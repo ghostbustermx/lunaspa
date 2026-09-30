@@ -53,6 +53,7 @@ RUN set -eux; \
         icu-dev \
         oniguruma-dev; \
     docker-php-ext-install -j"$(nproc)" intl mbstring; \
+    apk add --no-cache icu-libs oniguruma; \
     apk del --no-network .build-deps
 
 # ------------------------------------------------------------------ vendor
@@ -105,6 +106,7 @@ RUN set -eux; \
         mysqli \
         opcache \
         pdo_mysql; \
+    apk add --no-cache freetype libjpeg-turbo libpng libwebp; \
     apk del --no-network .build-deps; \
     apk add --no-cache nginx supervisor tzdata; \
     rm -rf /tmp/*
