@@ -116,13 +116,10 @@ RUN set -eux; \
 # libreria de runtime que falte solo se detecta cuando PHP la carga; esto
 # corta el build en lugar de dejar la web caida en produccion.
 # opcache es extension de Zend, asi que se comprueba por funcion, no por nombre.
+# El codigo va entre comillas simples y sin comillas simples dentro, porque el
+# shell las consumiria y PHP recibiria la cadena truncada.
 RUN set -eux; \
-    for ext in gd intl mbstring mysqli pdo_mysql exif; do \
-        php -r "exit(extension_loaded('$ext') ? 0 : 1)" \
-            || { echo "FALTA ext-$ext"; php -m; exit 1; }; \
-    done; \
-    php -r "exit(function_exists('opcache_get_status') ? 0 : 1)" \
-        || { echo "FALTA ext-opcache"; php -m; exit 1; }
+    php -r '$need = ["gd", "intl", "mbstring", "mysqli", "pdo_mysql", "exif"]; foreach ($need as $e) { if (!extension_loaded($e)) { fwrite(STDERR, "FALTA ext-" . $e . PHP_EOL); fwrite(STDERR, "cargadas: " . implode(", ", get_loaded_extensions()) . PHP_EOL); exit(1); } } if (!function_exists("opcache_get_status")) { fwrite(STDERR, "FALTA ext-opcache" . PHP_EOL); exit(1); }'
 
 # Configuracion del servidor.
 # nginx: se usa una config propia y se retira la de la distro para que no compita
