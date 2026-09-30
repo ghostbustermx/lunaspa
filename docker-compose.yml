@@ -74,7 +74,11 @@ services:
       # aplicacion, asi que no hace falta montar ningun .env en el contenedor.
       CI_ENVIRONMENT: production
 
-      app.baseURL: ${APP_URL:?define APP_URL en .env, con https:// y sin barra final}
+      # OBLIGATORIO con barra final. Config\App::$baseURL se concatena tal cual
+      # en base_url() y en SiteURI, sin normalizar: sin la barra, un
+      # "baseURL . 'dashboard'" produce https://ejemplo.comdashboard. Es un fallo
+      # de redireccion silencioso, la web carga y los enlaces no funcionan.
+      app.baseURL: ${APP_URL:?define APP_URL en .env, con https:// y CON barra final, ej. https://lunaspa.sayulitatravel.com/}
 
       # No se declara app.proxyIPs. Para confiar en X-Forwarded-Proto, CodeIgniter
       # comprueba que la IP remota entre en esa lista con inet_pton(), que no

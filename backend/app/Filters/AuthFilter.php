@@ -5,7 +5,6 @@ namespace App\Filters;
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
-use Config\App;
 
 /**
  * Exige una sesion valida para entrar al dashboard.
@@ -27,9 +26,7 @@ class AuthFilter implements FilterInterface
                 ->setJSON(['error' => 'No autenticado.']);
         }
 
-        $base = config(App::class)->baseURL;
-
-        return redirect()->to($base . 'dashboard/login')
+        return redirect()->to(base_url('dashboard/login'))
             ->with('error', 'Inicia sesion para continuar.');
     }
 

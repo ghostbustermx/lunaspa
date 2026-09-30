@@ -4,7 +4,6 @@ namespace App\Controllers\Dashboard;
 
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\RedirectResponse;
-use Config\App;
 
 class Auth extends BaseController
 {
@@ -19,7 +18,7 @@ class Auth extends BaseController
         $auth = service('auth');
 
         if ($auth->check()) {
-            return redirect()->to(config(App::class)->baseURL . 'dashboard');
+            return redirect()->to(base_url('dashboard'));
         }
 
         return view('dashboard/auth/login', [
@@ -35,7 +34,7 @@ class Auth extends BaseController
         $result = service('auth')->attempt($identifier, $password);
 
         if ($result['ok']) {
-            return redirect()->to(config(App::class)->baseURL . 'dashboard')
+            return redirect()->to(base_url('dashboard'))
                 ->with('success', 'Hola, ' . ($result['user']['full_name'] ?: $result['user']['username']) . '.');
         }
 
@@ -46,7 +45,7 @@ class Auth extends BaseController
     {
         service('auth')->logout();
 
-        return redirect()->to(config(App::class)->baseURL . 'dashboard/login')
+        return redirect()->to(base_url('dashboard/login'))
             ->with('success', 'Sesion cerrada.');
     }
 }
