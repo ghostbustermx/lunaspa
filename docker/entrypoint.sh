@@ -14,9 +14,18 @@ SPA_ROOT=/var/www/html
 UPLOADS_DIR="${APP_ROOT}/public/uploads"
 SEED_UPLOADS=/seed/uploads
 
-DB_HOST="${database.default.hostname:-db}"
-DB_PORT="${database.default.port:-3306}"
-DB_ATTEMPTS="${DB_WAIT_ATTEMPTS:-60}"
+# CodeIgniter guarda la configuracion en variables cuyo nombre lleva puntos
+# (database.default.hostname). ash no admite puntos dentro de una sustitucion
+# ${...}: aborta con "bad substitution" y el contenedor entra en bucle de
+# reinicios. El nombre con puntos se lee con printenv, que si lo admite.
+env_or() {
+    env_or_value=$(printenv "$1" 2>/dev/null || printf '%s' '')
+    printf '%s' "${env_or_value:-$2}"
+}
+
+DB_HOST=$(env_or database.default.hostname db)
+DB_PORT=$(env_or database.default.port 3306)
+DB_ATTEMPTS=$(env_or DB_WAIT_ATTEMPTS 60)
 
 log() { printf '[entrypoint] %s\n' "$*"; }
 err() { printf '[entrypoint] ERROR: %s\n' "$*" >&2; }

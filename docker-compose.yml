@@ -109,7 +109,7 @@ services:
       "database.default.password": ${MYSQL_PASSWORD:?define MYSQL_PASSWORD en .env}
       "database.default.DBDriver": MySQLi
       "database.default.charset": utf8mb4
-      "database.default.DBCollat": utf8mb4_unicode_ci
+      "database.default.DBCollation": utf8mb4_unicode_ci
       "database.default.port": 3306
       "database.default.encrypt": "false"
 
