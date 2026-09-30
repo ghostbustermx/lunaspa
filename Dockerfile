@@ -31,8 +31,36 @@ ENV VITE_API_BASE_URL=${VITE_API_BASE_URL}
 
 RUN npm run build
 
+# ---------------------------------------------------------------- php-base
+# PHP con las dos extensiones que exige composer.json (ext-intl y
+# ext-mbstring).
+#
+# Existe como etapa aparte, y no como un FROM directo, porque las dos imagenes
+# que la necesitan dan problemas distintos:
+#
+#   composer:2             trae su propio PHP, pero sin intl ni mbstring, y
+#                          composer install aborta con "ext-intl is missing"
+#   php:8.2-fpm-alpine     tampoco las trae de serie
+#
+# Al compilar aqui y heredar de esta etapa en vendor y en runtime, composer
+# valida la plataforma contra el mismo PHP que va a ejecutar la aplicacion, sin
+# recurrir a --ignore-platform-req para tapar el aviso.
+FROM php:8.2-fpm-alpine AS php-base
+
+RUN set -eux; \
+    apk add --no-cache --virtual .build-deps \
+        $PHPIZE_DEPS \
+        icu-dev; \
+    docker-php-ext-install -j"$(nproc)" intl mbstring; \
+    apk del --no-network .build-deps
+
 # ------------------------------------------------------------------ vendor
-FROM composer:2 AS vendor
+FROM php-base AS vendor
+
+# Solo el binario de la imagen oficial; la imagen entera no hace falta. Es un
+# phar de PHP, asi que funciona igual sobre Alpine que sobre Debian.
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+RUN chmod +x /usr/bin/composer && composer --version --no-ansi
 
 WORKDIR /build
 
@@ -58,13 +86,13 @@ RUN composer install \
         --optimize-autoloader
 
 # ----------------------------------------------------------------- runtime
-FROM php:8.2-fpm-alpine AS runtime
+FROM php-base AS runtime
 
-# Dependencias de compilacion de extensiones y las de ejecucion de nginx.
+# Dependencias de compilacion de las extensiones que faltan y las de ejecucion
+# de nginx. intl y mbstring ya vienen de php-base, asi que no se reinstalan.
 RUN set -eux; \
     apk add --no-cache --virtual .build-deps \
         $PHPIZE_DEPS \
-        icu-dev \
         freetype-dev \
         libjpeg-turbo-dev \
         libpng-dev \
@@ -73,8 +101,6 @@ RUN set -eux; \
     docker-php-ext-install -j"$(nproc)" \
         exif \
         gd \
-        intl \
-        mbstring \
         mysqli \
         opcache \
         pdo_mysql; \

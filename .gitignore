@@ -51,6 +51,19 @@ yarn-error.log*
 *.sql
 *.sql.gz
 
+# Documentacion interna de despliegue. Se conserva en local, pero no se publica:
+# es una guia de operacion del VPS, con la estructura de redes, los nombres de
+# los volumenes y la topologia de proxy, que no aporta nada a quien solo quiere
+# usar la web.
+#
+# Ojo: si ya estaba versionado, hay que quitarlo del indice una vez, porque
+# .gitignore no hace efecto sobre ficheros que git ya sigue:
+#
+#   git rm --cached DEPLOY.md
+#
+# .dockerignore ya lo excluia, asi que el contenedor no se ve afectado.
+DEPLOY.md
+
 # Material de trabajo que no forma parte del proyecto
 archivos/
 *.rar

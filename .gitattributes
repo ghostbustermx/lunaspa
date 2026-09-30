@@ -1,0 +1,33 @@
+# Ficheros que se ejecutan dentro del contenedor: tienen que conservar LF.
+#
+# Sin esto, un checkout con core.autocrlf=true (el valor por defecto en Windows
+# con Git for Windows) convierte el entrypoint.sh a CRLF, y /bin/sh deja de
+# reconocer "set -eu" porque lee el comando con un \r pegado. El sintoma es un
+# fallo raro que no aparece al revisar el codigo en local, solo al construir en
+# Linux.
+*.sh text eol=lf
+
+# El Dockerfile y las configuraciones que se montan en la imagen.
+Dockerfile text eol=lf
+docker/*.conf text eol=lf
+docker/*.ini text eol=lf
+
+# Compose, ignores y plantillas de entorno.
+*.yml text eol=lf
+*.yaml text eol=lf
+.dockerignore text eol=lf
+.gitignore text eol=lf
+*.example text eol=lf
+
+# El resto del proyecto, LF tambien: es lo que esperan las herramientas web y
+# evita diffs enteros cuando alguien edita en Windows.
+* text=auto eol=lf
+
+# Los binarios no se tocan.
+*.webp binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.woff binary
+*.woff2 binary
+*.ico binary
