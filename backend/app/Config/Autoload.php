@@ -83,6 +83,11 @@ class Autoload extends AutoloadConfig
      * -------------------------------------------------------------------
      * Helpers
      * -------------------------------------------------------------------
+     * 'url' aporta base_url(), site_url() y url_is(); 'form' aporta old(),
+     * csrf_field() y csrf_token(). El dashboard los usa en sus controladores,
+     * en ImageUpload y en todas sus vistas, asi que se declaran aqui y no en
+     * BaseController: asi tambien los encuentran los comandos de spark.
+     *
      * Prototype:
      *   $helpers = [
      *       'form',
@@ -90,5 +95,5 @@ class Autoload extends AutoloadConfig
      *
      * @var list<string>
      */
-    public $helpers = [];
+    public $helpers = ['form', 'url'];
 }

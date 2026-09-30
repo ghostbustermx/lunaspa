@@ -76,10 +76,11 @@ services:
 
       app.baseURL: ${APP_URL:?define APP_URL en .env, con https:// y sin barra final}
 
-      # '*' para confiar en X-Forwarded-*: es Nginx Proxy Manager quien decide
-      # el esquema y la IP reales. Con esto CodeIgniter emite cookies y
-      # redirecciones https:// detras del proxy en lugar de http://.
-      app.proxyIPs: "*"
+      # No se declara app.proxyIPs. Para confiar en X-Forwarded-Proto, CodeIgniter
+      # comprueba que la IP remota entre en esa lista con inet_pton(), que no
+      # entiende el comodin "*": la comprobacion falla siempre y la peticion se
+      # cre http://. El esquema se propaga con fastcgi_param HTTPS=on en
+      # docker/nginx.conf, que es lo que lee IncomingRequest::isSecure().
 
       # El HTTPS lo aplica el proxy, no la aplicacion. Si se deja en true,
       # CodeIgniter ademas avisa de que forceHTTPS no puede averiguar el
