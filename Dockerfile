@@ -111,9 +111,18 @@ RUN set -eux; \
     apk add --no-cache nginx supervisor tzdata; \
     rm -rf /tmp/*
 
-# Falla el build si falta una extension en vez de descubrirlo en produccion.
-# ext-mysqli e intl las pide composer.json; gd la usa ImageUpload para WebP.
-RUN docker-php-ext-check gd intl mbstring mysqli
+# Comprueba que las extensiones criticas cargan de verdad, no solo que estan
+# instaladas. docker-php-ext-install escribe un .ini por extension, asi que una
+# libreria de runtime que falte solo se detecta cuando PHP la carga; esto
+# corta el build en lugar de dejar la web caida en produccion.
+# opcache es extension de Zend, asi que se comprueba por funcion, no por nombre.
+RUN set -eux; \
+    for ext in gd intl mbstring mysqli pdo_mysql exif; do \
+        php -r "exit(extension_loaded('$ext') ? 0 : 1)" \
+            || { echo "FALTA ext-$ext"; php -m; exit 1; }; \
+    done; \
+    php -r "exit(function_exists('opcache_get_status') ? 0 : 1)" \
+        || { echo "FALTA ext-opcache"; php -m; exit 1; }
 
 # Configuracion del servidor.
 # nginx: se usa una config propia y se retira la de la distro para que no compita
