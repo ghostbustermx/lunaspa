@@ -66,16 +66,20 @@ RUN chmod +x /usr/bin/composer && composer --version --no-ansi
 
 WORKDIR /build
 
-COPY backend/composer.json ./
+# El lock se copia junto al composer.json a proposito: si falta, el build falla
+# aqui con un error de COPY, que es justo lo que se quiere. Composer se
+# ejecuta en modo install, que respeta el lock, y no en modo update.
+COPY backend/composer.json backend/composer.lock ./
 
 # Este proyecto usa el arranque manual de CI4 4.6+: system/ vive en el
 # repositorio y el framework se autocarga desde ahi. De composer solo hacen
 # falta psr/log y laminas/laminas-escaper, que app/Config/Autoload.php mapea a
-# mano contra ROOTPATH/vendor.
+# mano contra ROOTPATH/vendor. Son las dos unicas entradas de "packages" del
+# lock; las 46 de "packages-dev" no llegan a instalarse por el --no-dev.
 #
-# No hay composer.lock en el repositorio, y install resuelve y genera uno. En
-# cuanto se pueda commitear conviene hacerlo: el build deja de depender de que
-# "hoy" resuelvan las mismas versiones.
+# Con el lock, el build es reproducible: sin el, cada reconstruccion resuelve
+# las versiones mas recientes que puede y un dia falla por una dependencia que
+# subio de version.
 #
 # --no-scripts es obligatorio: el post-autoload-dump de este composer.json
 # ejecuta "composer update --working-dir=utils" y no existe ninguna carpeta
