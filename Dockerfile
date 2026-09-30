@@ -50,7 +50,8 @@ FROM php:8.2-fpm-alpine AS php-base
 RUN set -eux; \
     apk add --no-cache --virtual .build-deps \
         $PHPIZE_DEPS \
-        icu-dev; \
+        icu-dev \
+        oniguruma-dev; \
     docker-php-ext-install -j"$(nproc)" intl mbstring; \
     apk del --no-network .build-deps
 
