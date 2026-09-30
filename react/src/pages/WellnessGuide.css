@@ -1,0 +1,158 @@
+.wellness-guide{
+  --wg-navy:#07345d;
+  --wg-royal:#0b64ad;
+  --wg-sky:#a9ddf5;
+  --wg-mist:#eef9fd;
+  --wg-cream:#fbfaf5;
+  --wg-gold:#c6a04a;
+  --wg-ink:#18354a;
+  --wg-muted:#718593;
+  --wg-line:#dfebf1;
+  --wg-shadow:0 24px 70px rgba(5,48,83,.12);
+  background:var(--wg-cream);
+  color:var(--wg-ink);
+  line-height:1.6
+}
+.wellness-guide a{text-decoration:none;color:inherit}
+.wellness-guide button{font:inherit}
+.wellness-guide .wg-hero{
+  min-height:70vh;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:90px 7vw;
+  position:relative;
+  overflow:hidden;
+  background:radial-gradient(circle at 12% 14%,#a9ddf5cc,transparent 32%),linear-gradient(135deg,#fbfdfd,#eaf7fc 55%,#fdfbf6)
+}
+.wellness-guide .wg-hero:after{content:"";position:absolute;right:-130px;bottom:-210px;width:520px;height:650px;background:linear-gradient(145deg,#0b64ad,#a9ddf5);opacity:.07;transform:rotate(18deg);border-radius:45%}
+.wellness-guide .wg-hero-inner{position:relative;z-index:2;max-width:900px}
+.wellness-guide .wg-hero-media{
+  margin-top:46px;
+  max-width:940px;
+  margin-inline:auto;
+  border-radius:34px;
+  overflow:hidden;
+  border:1px solid #07345d14;
+  box-shadow:var(--wg-shadow);
+}
+.wellness-guide .wg-hero-media img{display:block;width:100%;height:auto}
+.wellness-guide .wg-eyebrow{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--wg-royal);font-weight:800}
+.wellness-guide .wg-hero h1{font:500 clamp(3rem,7vw,6.5rem)/.92 Georgia,serif;color:var(--wg-navy);margin:15px 0 22px}
+.wellness-guide .wg-hero p{max-width:720px;margin:0 auto;color:var(--wg-muted);font-size:1.05rem}
+.wellness-guide .wg-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:28px}
+.wellness-guide .wg-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 19px;border-radius:999px;font-weight:800;border:1px solid transparent;cursor:pointer}
+.wellness-guide .wg-btn-primary{background:var(--wg-navy);color:#fff}
+.wellness-guide .wg-btn-secondary{background:#fff;color:var(--wg-navy);border-color:var(--wg-line)}
+.wellness-guide .wg-section{padding:90px clamp(20px,7vw,100px)}
+.wellness-guide .wg-head{text-align:center;max-width:780px;margin:0 auto 45px}
+.wellness-guide .wg-head h2{font:500 clamp(2.2rem,4.3vw,4rem)/1.02 Georgia,serif;color:var(--wg-navy);margin:12px 0}
+.wellness-guide .wg-head p{color:var(--wg-muted)}
+.wellness-guide .wg-pills{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:20px 0 40px}
+.wellness-guide .wg-pill{border:1px solid var(--wg-line);background:#fff;color:#496376;border-radius:999px;padding:8px 13px;font-size:.75rem;cursor:pointer;font-weight:800}
+.wellness-guide .wg-pill.active{background:var(--wg-navy);color:#fff}
+.wellness-guide .wg-status{max-width:1120px;margin:auto;text-align:center;color:var(--wg-muted);padding:26px 0}
+.wellness-guide .wg-status--error{color:#a33a2f}
+.wellness-guide .wg-grid{max-width:1120px;margin:auto;display:grid;grid-template-columns:1.18fr .82fr;gap:20px}
+.wellness-guide .wg-stack{display:grid;gap:20px}
+/* Fila de texto: al filtrar por categoria la columna derecha lista las entradas
+   anteriores sin imagen, para que quepan mas y se lean de un vistazo. */
+.wellness-guide .wg-row{
+  display:block;width:100%;text-align:left;padding:17px 21px 19px;
+  background:#fff;border:1px solid #07345d10;border-radius:24px;
+  box-shadow:0 10px 34px #0530530f;cursor:pointer;transition:.25s
+}
+.wellness-guide .wg-row:hover{transform:translateY(-3px);border-color:#0b64ad40;box-shadow:0 18px 44px #0530531a}
+.wellness-guide .wg-row h3{font:500 1.12rem/1.25 Georgia,serif;color:var(--wg-navy);margin:7px 0 6px}
+.wellness-guide .wg-row p{color:var(--wg-muted);font-size:.9rem;margin:0 0 11px}
+.wellness-guide .wg-row-foot{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.wellness-guide .wg-row .wg-read{font-size:.72rem}
+.wellness-guide .wg-row-date{font-size:.7rem;color:var(--wg-muted);letter-spacing:.04em}
+.wellness-guide .wg-card{background:#fff;border:1px solid #07345d10;border-radius:34px;overflow:hidden;box-shadow:0 14px 55px #05305314;cursor:pointer;transition:.3s;padding:0;text-align:left;width:100%}
+.wellness-guide .wg-card:hover{transform:translateY(-5px);box-shadow:var(--wg-shadow)}
+.wellness-guide .wg-img{height:240px;background:linear-gradient(135deg,#a9ddf5,#eef9fd);display:grid;place-items:center;color:var(--wg-navy);font:500 1.5rem Georgia,serif;position:relative;overflow:hidden}
+/* Imagen que tapa el degradado de la portada y de las tarjetas. Se posiciona
+   con inset:0 porque dentro de un grid con place-items:center un height:100%
+   es un porcentaje circular y dejaba la foto a su tamano natural. */
+.wellness-guide .wg-cover{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
+.wellness-guide .wg-featured .wg-img{height:430px}
+.wellness-guide .wg-copy{padding:25px 28px 30px}
+.wellness-guide .wg-cat{font-size:.67rem;letter-spacing:.15em;text-transform:uppercase;color:var(--wg-royal);font-weight:800}
+.wellness-guide .wg-copy h3{font:500 1.75rem/1.08 Georgia,serif;color:var(--wg-navy);margin:10px 0}
+.wellness-guide .wg-featured .wg-copy h3{font-size:2.5rem}
+.wellness-guide .wg-copy p{color:var(--wg-muted);margin:0 0 16px}
+.wellness-guide .wg-read{font-size:.77rem;color:var(--wg-royal);font-weight:900}
+.wellness-guide .wg-article{max-width:1050px;margin:auto}
+.wellness-guide .wg-article-hero{display:grid;grid-template-columns:1fr .9fr;gap:45px;align-items:center;padding:30px 0 35px}
+.wellness-guide .wg-article h1{font:500 clamp(2.7rem,5vw,5rem)/.95 Georgia,serif;color:var(--wg-navy);margin:12px 0 20px}
+.wellness-guide .wg-article-hero p{color:var(--wg-muted)}
+.wellness-guide .wg-photo{height:430px;border-radius:47%;background:linear-gradient(145deg,#a9ddf5,#0b64ad);display:grid;place-items:center;color:#fff;font:500 1.7rem Georgia,serif;box-shadow:var(--wg-shadow);overflow:hidden;position:relative}
+.wellness-guide .wg-body{max-width:780px;margin:auto}
+.wellness-guide .wg-body h2{font:500 2rem Georgia,serif;color:var(--wg-navy);margin-top:45px}
+.wellness-guide .wg-body p,.wellness-guide .wg-body li{color:#4f6775}
+.wellness-guide .wg-internal{margin:42px 0;background:var(--wg-mist);border-radius:28px;padding:28px}
+.wellness-guide .wg-internal h3{font:500 1.6rem Georgia,serif;color:var(--wg-navy);margin:0 0 8px}
+.wellness-guide .wg-internal a{display:inline-block;background:#fff;border:1px solid var(--wg-line);padding:8px 12px;border-radius:999px;color:var(--wg-royal);font-size:.75rem;font-weight:800;margin:5px}
+.wellness-guide .wg-signature{max-width:780px;margin:55px auto 0;padding:28px 0;border-top:1px solid var(--wg-line);border-bottom:1px solid var(--wg-line)}
+.wellness-guide .wg-signature strong{display:block;color:var(--wg-navy)}
+.wellness-guide .wg-signature em{color:var(--wg-muted);font-size:.9rem}
+.wellness-guide .wg-article-cta{max-width:780px;margin:34px auto 80px;text-align:center;padding:34px;background:#fff;border:1px solid var(--wg-line);border-radius:30px;box-shadow:0 12px 40px #05305310}
+.wellness-guide .wg-article-cta h3{font:500 2rem Georgia,serif;color:var(--wg-navy);margin:0 0 7px}
+.wellness-guide .wg-article-cta p{color:var(--wg-muted)}
+.wellness-guide .wg-article-cta .wg-btn{margin-top:8px}
+@media(max-width:850px){
+  .wellness-guide .wg-grid,.wellness-guide .wg-article-hero{grid-template-columns:1fr}
+  .wellness-guide .wg-featured .wg-img{height:300px}
+  .wellness-guide .wg-section{padding:70px 20px}
+  .wellness-guide .wg-photo{height:330px}
+}
+.wg-modal-backdrop{
+  position:fixed;
+  inset:0;
+  z-index:2000;
+  background:rgba(7,52,93,.6);
+  -webkit-backdrop-filter:blur(6px);
+  backdrop-filter:blur(6px);
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  padding:4vh 20px 8vh;
+  overflow-y:auto;
+}
+.wg-modal{
+  position:relative;
+  width:min(920px,100%);
+  background:#fbfaf5;
+  border-radius:34px;
+  box-shadow:0 44px 120px rgba(5,30,55,.5);
+  overflow:hidden;
+}
+.wg-modal-close{
+  position:absolute;
+  top:14px;
+  right:14px;
+  z-index:5;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:1px solid #dfebf1;
+  background:#fff;
+  color:#07345d;
+  font-size:22px;
+  line-height:1;
+  cursor:pointer;
+  box-shadow:0 10px 24px rgba(7,52,93,.15);
+  display:grid;
+  place-items:center;
+}
+.wg-modal-close:hover{background:#eef9fd;color:#0b64ad}
+.wg-modal-loading{margin:0;padding:70px 30px;text-align:center;color:#718593;font-size:1rem}
+.wg-modal .wg-section{padding:48px clamp(18px,4vw,44px)}
+.wg-modal .wg-article-hero{gap:26px;padding:18px 0 22px}
+.wg-modal .wg-photo{height:280px}
+.wg-modal .wg-body h2{margin-top:34px}
+.wg-modal .wg-article-cta{margin:24px auto 30px}
+@media(max-width:850px){
+  .wg-modal-backdrop{padding:2vh 12px 6vh}
+  .wg-modal .wg-article-hero{padding-top:0}
+}

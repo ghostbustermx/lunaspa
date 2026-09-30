@@ -1,0 +1,157 @@
+# Luna Spa en produccion.
+#
+# Dos servicios, una sola imagen web y una base MySQL sin puertos publicados:
+#
+#   npm-network  red de Nginx Proxy Manager, creada a mano en el VPS
+#   lunaspa      red interna del proyecto, sin salida a la maquina host
+#
+# El contenedor web se une a las dos: Nginx Proxy Manager lo alcanza por su
+# nombre (web) y MySQL sigue sin ser alcanzable desde internet.
+#
+# Uso, con el .env ya creado a partir de .env.example:
+#
+#   docker compose up -d --build
+#   docker compose exec web php spark users:create     # primer admin
+#
+# No lleva clave "version:": Docker la marca como obsoleta y avisa en cada
+# arranque.
+
+name: lunaspa
+
+services:
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?define MYSQL_ROOT_PASSWORD en .env}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-lunaspa}
+      MYSQL_USER: ${MYSQL_USER:-lunaspa}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?define MYSQL_PASSWORD en .env}
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - lunaspa
+    healthcheck:
+      # Sin esto, depends_on solo esperaria a que el contenedor arranque, no a
+      # que MySQL acepte conexiones, y las migraciones fallarian en el primer
+      # arranque de una base recien creada.
+      #
+      # --silent oculta el banner "mysqld is alive", que si no se repite en los
+      # logs cada 10 segundos.
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-u", "root", "--silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 40s
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --max-allowed-packet=32M
+      # Los contenedores se resuelven por su nombre de servicio en la red
+      # interna; contra el nombre del host no hace falta resolver DNS.
+      - --skip-name-resolve
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Esta variable se compila dentro del bundle de Vite: cambiar el
+        # dominio no basta con reiniciar, hay que reconstruir la imagen.
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-/api}
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    # Sin "ports": la web se publica unicamente a traves de Nginx Proxy Manager.
+    # Publicar 8080 en el host abriria el sitio saltandose el TLS y el
+    # certificado.
+    expose:
+      - "80"
+    environment:
+      # -------------------------------------------------------- CodeIgniter
+      # Las variables de entorno tienen prioridad sobre el .env de la
+      # aplicacion, asi que no hace falta montar ningun .env en el contenedor.
+      CI_ENVIRONMENT: production
+
+      app.baseURL: ${APP_URL:?define APP_URL en .env, con https:// y sin barra final}
+
+      # '*' para confiar en X-Forwarded-*: es Nginx Proxy Manager quien decide
+      # el esquema y la IP reales. Con esto CodeIgniter emite cookies y
+      # redirecciones https:// detras del proxy en lugar de http://.
+      app.proxyIPs: "*"
+
+      # El HTTPS lo aplica el proxy, no la aplicacion. Si se deja en true,
+      # CodeIgniter ademas avisa de que forceHTTPS no puede averiguar el
+      # esquema por si mismo.
+      app.forceGlobalSecureRequests: "false"
+
+      # El prefijo de la configuracion es el nombre corto de la clase, asi que
+      # son session.* y no app.session*. Un nombre mal puesto no da error: la
+      # variable simplemente se ignora y el sitio arranca con los valores por
+      # defecto de app/Config.
+      session.driver: "CodeIgniter\\Session\\Handlers\\FileHandler"
+      session.savePath: "/var/www/backend/writable/session"
+      session.expiration: "7200"
+      session.cookieName: "lunaspa_session"
+
+      cookie.secure: "true"
+      cookie.httponly: "true"
+      cookie.samesite: "Lax"
+
+      # ------------------------------------------------------------- MySQL
+      # Con punto, que es la forma que entiende la configuracion de
+      # CodeIgniter. Requieren clear_env=no en php-fpm, configurado en
+      # docker/php-fpm-www.conf.
+      "database.default.hostname": db
+      "database.default.database": ${MYSQL_DATABASE:-lunaspa}
+      "database.default.username": ${MYSQL_USER:-lunaspa}
+      "database.default.password": ${MYSQL_PASSWORD:?define MYSQL_PASSWORD en .env}
+      "database.default.DBDriver": MySQLi
+      "database.default.charset": utf8mb4
+      "database.default.DBCollat": utf8mb4_unicode_ci
+      "database.default.port": 3306
+      "database.default.encrypt": "false"
+
+      # ------------------------------------------------------------- correo
+      # El backend no envia ningun correo: no hay ninguna llamada a send() en
+      # toda la aplicacion, solo guarda el correo de reseñas y usuarios. Estas
+      # variables quedan por si se anade envio en el futuro; rellenarlas ahora no
+      # cambia nada. En cualquier caso, no se deja ninguna credencial SMTP en el
+      # repositorio.
+      email.SMTPHost: ${SMTP_HOST:-}
+      email.SMTPUser: ${SMTP_USER:-}
+      email.SMTPPass: ${SMTP_PASS:-}
+      email.SMTPPort: ${SMTP_PORT:-587}
+      email.SMTPCrypto: ${SMTP_CRYPTO:-tls}
+      email.SMTPAuthMethod: ${SMTP_AUTH_METHOD:-login}
+    volumes:
+      # Los unicos dos motivos por los que hacen falta volumenes: las fotos del
+      # blog y las sesiones del panel. Sin ellos, un "down" seguido de un "up"
+      # perderia las imagenes ya subidas.
+      - uploads:/var/www/backend/public/uploads
+      - sessions:/var/www/backend/writable/session
+      # writable/logs no se monta a proposito: los logs salen por stdout y los
+      # captura Docker. Montarlo acumularia ficheros sin rotar.
+    networks:
+      - npm-network
+      - lunaspa
+
+volumes:
+  uploads:
+  sessions:
+  db_data:
+
+networks:
+  # Red externa de Nginx Proxy Manager. Debe existir ya en el VPS:
+  #
+  #   docker network create npm-network
+  #
+  # No la crea el proyecto a proposito: si ya existe creada por NPM con otro
+  # nombre, marcarla external evita que Compose cree una segunda red homonima
+  # que NPM no conoce, y el contenedor web no seria alcanzable desde el proxy.
+  npm-network:
+    external: true
+  # Red propia y aislada: MySQL solo es visible desde aqui.
+  lunaspa:
+    driver: bridge

@@ -1,0 +1,57 @@
+# Dependencias
+node_modules/
+vendor/
+.pnp
+.pnp.js
+
+# Build
+dist/
+build/
+*.tsbuildinfo
+
+# Variables de entorno. El .env local de desarrollo apunta a MySQL en
+# localhost:3306 con el usuario root de XAMPP y no sirve en el VPS, y el
+# backend/.env.development con el de la base local tampoco.
+.env
+.env.local
+.env.*.local
+backend/.env
+backend/.env.*
+!backend/.env.example
+!react/.env.example
+
+# Escribibles de CodeIgniter: cache, logs y sesiones son de cada maquina.
+backend/writable/*
+!backend/writable/.gitkeep
+
+# public/uploads es contenido del usuario, no del repositorio: las fotos que se
+# suban desde el panel no se versionan. La unica excepcion es la imagen de
+# ejemplo del articulo, que el Dockerfile copia a /seed/uploads para que el
+# volumen del primer arranque no deje el articulo sin foto. Si se anaden mas
+# imagenes iniciales, hay que declararlas aqui una a una.
+backend/public/uploads/*
+!backend/public/uploads/blog/
+backend/public/uploads/blog/*
+!backend/public/uploads/blog/39a95cdb5c836671338959e1.webp
+
+# Sistema y editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*~
+
+# Logs y volcados
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.sql
+*.sql.gz
+
+# Material de trabajo que no forma parte del proyecto
+archivos/
+*.rar
+*.zip

@@ -1,0 +1,47 @@
+# Contexto de build del contenedor "web". Cuanto mas pequeño, menos cosas
+# puede romper el build y menos contexto se manda a la daemon de Docker.
+
+# El repo tiene .env con credenciales de MySQL y SMTP. Esta linea es la que lo
+# impide; el rm -f del Dockerfile es la segunda red de seguridad.
+**/.env
+**/.env.*
+!**/.env.example
+
+# Dependencias: se reinstalan dentro de la imagen con npm ci y composer install.
+# Copiar el node_modules de Windows ademas romperia los binarios nativos.
+**/node_modules
+**/vendor
+
+# Artefactos de compilacion: la imagen construye su propio build de Vite.
+**/dist
+**/build
+
+# backend/public/uploads NO se excluye a proposito: el Dockerfile lo copia a
+# /seed/uploads para poder sembrar el volumen en el primer arranque. Excluirlo
+# dejaria al articulo sin foto.
+
+# Escribibles: los volumenes los crean vacios en el contenedor.
+backend/writable
+**/writable/cache
+**/writable/logs
+**/writable/session
+**/writable/debugbar
+
+# Versionado y editor
+.git
+.gitignore
+.gitattributes
+.vscode
+.idea
+**/.DS_Store
+**/Thumbs.db
+
+# Documentacion y ficheros de apoyo del despliegue.
+**/*.md
+**/*.rar
+**/*.zip
+**/*.log
+
+# No hacen falta en la imagen.
+docker-compose*.yml
+DEPLOY.md

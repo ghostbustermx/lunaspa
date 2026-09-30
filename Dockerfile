@@ -1,0 +1,147 @@
+# syntax=docker/dockerfile:1
+#
+# Luna Spa: SPA de React (Vite) + CodeIgniter 4 servidos por un unico
+# contenedor con nginx y php-fpm. Un solo contenedor evita tener que
+# sincronizar un nginx externo con la imagen de PHP y deja la configuracion
+# de fastcgi en un unico sitio.
+#
+# Etapas:
+#   frontend -> compila react/ con Vite
+#   vendor   -> composer install --no-dev
+#   runtime  -> php-fpm + nginx con las extensiones que exige el proyecto
+#
+# Las extensiones no son opcionales: App\Libraries\ImageUpload convierte las
+# fotos del blog a WebP con GD y valida el tipo real con finfo, asi que sin
+# gd (con soporte WebP) el panel no puede subir imagenes.
+
+# ---------------------------------------------------------------- frontend
+FROM node:20-alpine AS frontend
+
+WORKDIR /build
+
+# El lock si existe: npm ci es reproducible y falla si el lock no cuadra.
+COPY react/package.json react/package-lock.json ./
+RUN npm ci
+
+COPY react/ ./
+
+# La SPA consume la API en el mismo dominio, asi que basta una ruta relativa.
+ARG VITE_API_BASE_URL=/api
+ENV VITE_API_BASE_URL=${VITE_API_BASE_URL}
+
+RUN npm run build
+
+# ------------------------------------------------------------------ vendor
+FROM composer:2 AS vendor
+
+WORKDIR /build
+
+COPY backend/composer.json ./
+
+# Este proyecto usa el arranque manual de CI4 4.6+: system/ vive en el
+# repositorio y el framework se autocarga desde ahi. De composer solo hacen
+# falta psr/log y laminas/laminas-escaper, que app/Config/Autoload.php mapea a
+# mano contra ROOTPATH/vendor.
+#
+# No hay composer.lock en el repositorio, y install resuelve y genera uno. En
+# cuanto se pueda commitear conviene hacerlo: el build deja de depender de que
+# "hoy" resuelvan las mismas versiones.
+#
+# --no-scripts es obligatorio: el post-autoload-dump de este composer.json
+# ejecuta "composer update --working-dir=utils" y no existe ninguna carpeta
+# utils/, asi que sin esta opcion el build revienta.
+RUN composer install \
+        --no-dev \
+        --no-interaction \
+        --no-scripts \
+        --prefer-dist \
+        --optimize-autoloader
+
+# ----------------------------------------------------------------- runtime
+FROM php:8.2-fpm-alpine AS runtime
+
+# Dependencias de compilacion de extensiones y las de ejecucion de nginx.
+RUN set -eux; \
+    apk add --no-cache --virtual .build-deps \
+        $PHPIZE_DEPS \
+        icu-dev \
+        freetype-dev \
+        libjpeg-turbo-dev \
+        libpng-dev \
+        libwebp-dev; \
+    docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp; \
+    docker-php-ext-install -j"$(nproc)" \
+        exif \
+        gd \
+        intl \
+        mbstring \
+        mysqli \
+        opcache \
+        pdo_mysql; \
+    apk del --no-network .build-deps; \
+    apk add --no-cache nginx supervisor tzdata; \
+    rm -rf /tmp/*
+
+# Falla el build si falta una extension en vez de descubrirlo en produccion.
+# ext-mysqli e intl las pide composer.json; gd la usa ImageUpload para WebP.
+RUN docker-php-ext-check gd intl mbstring mysqli
+
+# Configuracion del servidor.
+# nginx: se usa una config propia y se retira la de la distro para que no compita
+# por el puerto 80.
+COPY docker/nginx.conf /etc/nginx/nginx.conf
+RUN rm -f /etc/nginx/conf.d/default.conf
+
+# php-fpm: el pool que trae la imagen viene con clear_env=yes, que borra el
+# entorno de los workers. Como toda la configuracion de CodeIgniter llega por
+# variables de entorno (docker-compose), ese valor haria que getenv() devolviera
+# false y la base de datos apuntara a 127.0.0.1 sin usuario.
+COPY docker/php-fpm-www.conf /usr/local/etc/php-fpm.d/www.conf
+COPY docker/php.ini /usr/local/etc/php/conf.d/zz-lunaspa.ini
+COPY docker/supervisord.conf /etc/supervisord.conf
+COPY docker/entrypoint.sh /usr/local/bin/entrypoint
+RUN chmod +x /usr/local/bin/entrypoint
+
+# Codigo de la aplicacion. El codigo va primero y vendor encima: si el host
+# trajera un vendor/ de Windows (.dockerignore lo excluye, pero por si acaso)
+# este COPY es el que manda.
+COPY backend/ /var/www/backend
+COPY --from=vendor /build/vendor /var/www/backend/vendor
+
+# writable/ y public/uploads/ reciben volumenes, asi que se crean vacios con los
+# permisos que necesita el usuario www-data. El .env nunca se copia: la
+# configuracion entra unicamente por variables de entorno.
+COPY --from=frontend /build/dist /var/www/html
+
+# La foto de ejemplo del articulo se copia a /seed/uploads, fuera de
+# public/uploads, porque el volumen tapa ese directorio: si la semilla se
+# quedase dentro, el primer arranque montaria el volumen encima y el articulo se
+# veria sin foto. El entrypoint la vuelca en el volumen solo si esta vacio.
+#
+# El comentario va aqui y no dentro del RUN porque Docker une las lineas de
+# continuacion en una sola, y un "#" a mitad de esa linea haria que el shell
+# comentase todo lo que venga despues: el cp y el chown se quedarian sin
+# ejecutar y sin error visible.
+RUN set -eux; \
+    rm -f /var/www/backend/.env; \
+    mkdir -p /var/www/backend/writable/cache \
+             /var/www/backend/writable/logs \
+             /var/www/backend/writable/session \
+             /var/www/backend/writable/debugbar \
+             /var/www/backend/writable/uploads \
+             /var/www/backend/public/uploads/blog; \
+    mkdir -p /seed; \
+    cp -R /var/www/backend/public/uploads /seed/uploads; \
+    chown -R www-data:www-data /var/www/backend/writable /var/www/backend/public/uploads; \
+    chmod -R 775 /var/www/backend/writable /var/www/backend/public/uploads; \
+    mkdir -p /run/nginx
+
+EXPOSE 80
+
+# Si la API no responde el contenedor se marca unhealthy y Nginx Proxy Manager lo
+# muestra como caido en vez de servir un error de PHP al visitante.
+HEALTHCHECK --interval=30s --timeout=5s --start-period=45s --retries=3 \
+    CMD wget -qO- http://127.0.0.1/api/reviews >/dev/null 2>&1 || exit 1
+
+ENTRYPOINT ["/usr/local/bin/entrypoint"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]

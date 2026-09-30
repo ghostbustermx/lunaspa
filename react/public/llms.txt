@@ -1,0 +1,15 @@
+# Luna Spa
+
+> Home massage and spa services in Sayulita. Relaxing, therapeutic, deep tissue, hot stone and more at your Airbnb, villa or hotel.
+
+Luna Spa is a home massage therapy service with an extensive menu of massage and body treatment options. Their main goal is to help you forget the stress of the moment of the city and work, enjoying a moment full of peace and tranquility.
+
+## Pages
+
+- [Home](https://lunaspa.example.com/): Main page with an overview of Luna Spa massage and spa services.
+- [In-Home Massage](https://lunaspa.example.com/in-home-massage): In-home massage treatments delivered to your accommodation.
+- [Deep Tissue Massage](https://lunaspa.example.com/deep-tissue-massage): Deep tissue and de-contracting massage.
+- [Couples Massage](https://lunaspa.example.com/couples-massage): Couples massage experiences.
+- [Group Massage](https://lunaspa.example.com/group-massage): Group massage services.
+- [Privacy Policy](https://lunaspa.example.com/privacy-policy): Privacy policy.
+- [Terms and Conditions](https://lunaspa.example.com/terms-and-conditions): Terms and conditions.

@@ -1,0 +1,58 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Luna Spa",
+    "identifier": "https://lunaspa.example.com"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:lunaspa.example.com:web:home",
+      "displayName": "Luna Spa Home",
+      "type": "text/html",
+      "url": "https://lunaspa.example.com/",
+      "description": "Main page with an overview of Luna Spa massage and spa services."
+    },
+    {
+      "identifier": "urn:air:lunaspa.example.com:web:in-home-massage",
+      "displayName": "In-Home Massage",
+      "type": "text/html",
+      "url": "https://lunaspa.example.com/in-home-massage",
+      "description": "In-home massage treatments delivered to your accommodation."
+    },
+    {
+      "identifier": "urn:air:lunaspa.example.com:web:deep-tissue-massage",
+      "displayName": "Deep Tissue Massage",
+      "type": "text/html",
+      "url": "https://lunaspa.example.com/deep-tissue-massage",
+      "description": "Deep tissue and de-contracting massage."
+    },
+    {
+      "identifier": "urn:air:lunaspa.example.com:web:couples-massage",
+      "displayName": "Couples Massage",
+      "type": "text/html",
+      "url": "https://lunaspa.example.com/couples-massage",
+      "description": "Couples massage experiences."
+    },
+    {
+      "identifier": "urn:air:lunaspa.example.com:web:group-massage",
+      "displayName": "Group Massage",
+      "type": "text/html",
+      "url": "https://lunaspa.example.com/group-massage",
+      "description": "Group massage services."
+    },
+    {
+      "identifier": "urn:air:lunaspa.example.com:web:privacy-policy",
+      "displayName": "Privacy Policy",
+      "type": "text/html",
+      "url": "https://lunaspa.example.com/privacy-policy",
+      "description": "Privacy policy for Luna Spa."
+    },
+    {
+      "identifier": "urn:air:lunaspa.example.com:web:terms-and-conditions",
+      "displayName": "Terms and Conditions",
+      "type": "text/html",
+      "url": "https://lunaspa.example.com/terms-and-conditions",
+      "description": "Terms and conditions for Luna Spa."
+    }
+  ]
+}

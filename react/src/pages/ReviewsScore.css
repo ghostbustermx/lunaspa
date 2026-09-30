@@ -1,0 +1,206 @@
+/* Modulo "reviews score" (plantilla luna_spa_review_prototype).
+   Todo queda debajo de .reviews-score y con prefijo rs- para no chocar con los
+   estilos globales del sitio (.hero, .card, .nav, footer, label, input...). */
+.reviews-score{
+  --rs-sky:#9ed8ea;
+  --rs-pale:var(--sky-soft);
+  --rs-blue:#0b4f83;
+  --rs-navy:var(--royal-2);
+  --rs-ink:var(--ink);
+  --rs-muted:var(--muted);
+  --rs-gold:var(--gold);
+  --rs-line:var(--line);
+  --rs-shadow:0 25px 70px rgba(7,56,95,.1);
+  background:linear-gradient(#f5fbfd,#fff,#f4fafc);
+  color:var(--rs-ink);
+  line-height:1.6
+}
+.reviews-score .rs-hero{
+  min-height:410px;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:60px 22px;
+  background:radial-gradient(circle at 15% 25%,#fff 0 10%,transparent 30%),radial-gradient(circle at 85% 70%,#cceef6,transparent 35%),linear-gradient(135deg,#edf9fc,#c9eaf3)
+}
+.reviews-score .rs-ey{
+  font-size:11px;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  color:var(--rs-blue);
+  font-weight:800
+}
+.reviews-score .rs-hero h1{
+  font:500 clamp(43px,7vw,70px)/1 Georgia,"Times New Roman",serif;
+  letter-spacing:-.03em;
+  color:var(--rs-navy);
+  margin:15px 0
+}
+.reviews-score .rs-hero p{
+  max-width:650px;
+  margin:auto;
+  color:#587280;
+  line-height:1.7;
+  font-size:17px
+}
+.reviews-score .rs-wrap{
+  max-width:1020px;
+  margin:-45px auto 80px;
+  padding:0 20px;
+  position:relative;
+  z-index:2
+}
+.reviews-score .rs-card{
+  background:#fff;
+  border:1px solid var(--rs-line);
+  border-radius:28px;
+  box-shadow:var(--rs-shadow);
+  overflow:hidden
+}
+.reviews-score .rs-bar{height:5px;background:#eaf2f5}
+.reviews-score .rs-bar span{
+  display:block;
+  height:100%;
+  width:20%;
+  background:linear-gradient(90deg,var(--rs-sky),var(--rs-blue));
+  transition:width .3s ease
+}
+.reviews-score .rs-body{padding:40px}
+.reviews-score .rs-step{
+  font-size:11px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--rs-blue);
+  font-weight:800
+}
+.reviews-score .rs-title{
+  font:32px Georgia,"Times New Roman",serif;
+  letter-spacing:-.02em;
+  color:var(--rs-navy);
+  margin:8px 0
+}
+.reviews-score .rs-intro{color:var(--rs-muted)}
+.reviews-score .rs-field{margin:25px 0}
+.reviews-score .rs-label{
+  display:block;
+  font-weight:700;
+  font-size:14px;
+  margin-bottom:9px;
+  color:var(--rs-ink)
+}
+.reviews-score .rs-input,
+.reviews-score .rs-textarea{
+  width:100%;
+  border:1px solid var(--rs-line);
+  border-radius:14px;
+  padding:14px;
+  outline:0;
+  color:var(--rs-ink);
+  background:#fff
+}
+.reviews-score .rs-textarea{min-height:145px;resize:vertical;line-height:1.6}
+.reviews-score .rs-input:focus,
+.reviews-score .rs-textarea:focus{border-color:var(--rs-sky);box-shadow:0 0 0 4px rgba(158,216,234,.2)}
+.reviews-score .rs-hint{font-size:12px;color:var(--rs-muted);margin-top:7px}
+.reviews-score .rs-ratings{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.reviews-score .rs-rate{
+  background:#fbfdfe;
+  border:1px solid var(--rs-line);
+  border-radius:17px;
+  padding:14px 8px;
+  text-align:center
+}
+.reviews-score .rs-rate-name{
+  display:block;
+  font-size:12px;
+  color:#587181;
+  min-height:32px
+}
+.reviews-score .rs-stars{display:flex;justify-content:center;gap:2px}
+.reviews-score .rs-star{
+  border:0;
+  background:none;
+  color:#cbd7dd;
+  font-size:25px;
+  line-height:1.2;
+  cursor:pointer;
+  padding:0;
+  transition:color .2s ease,transform .2s ease
+}
+.reviews-score .rs-star:hover{transform:scale(1.12)}
+.reviews-score .rs-star.is-on{color:var(--rs-gold)}
+.reviews-score .rs-overall{
+  display:flex;
+  gap:16px;
+  align-items:center;
+  background:var(--rs-pale);
+  border-radius:18px;
+  padding:17px;
+  margin-top:18px
+}
+.reviews-score .rs-score{font:40px Georgia,"Times New Roman",serif;color:var(--rs-navy);min-width:65px;line-height:1.1}
+.reviews-score .rs-two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.reviews-score .rs-note{
+  padding:15px;
+  border:1px dashed #cbdde4;
+  border-radius:17px;
+  background:#fbfdfd
+}
+.reviews-score .rs-check{
+  display:flex;
+  gap:10px;
+  color:#587181;
+  font-size:13px;
+  line-height:1.5;
+  font-weight:400;
+  margin:0;
+  align-items:flex-start
+}
+.reviews-score .rs-check input{margin-top:3px;accent-color:var(--rs-blue)}
+.reviews-score .rs-actions{
+  border-top:1px solid var(--rs-line);
+  margin-top:30px;
+  padding-top:25px;
+  display:flex;
+  justify-content:flex-end;
+  gap:18px;
+  align-items:center
+}
+/* El boton se ancla a la derecha aunque no haya mensaje de error. */
+.reviews-score .rs-micro{font-size:12px;color:var(--rs-muted);margin-right:auto}
+.reviews-score .rs-error{color:#a33a2f;font-weight:700}
+.reviews-score .rs-btn{
+  border:0;
+  border-radius:99px;
+  padding:14px 22px;
+  font-weight:800;
+  cursor:pointer
+}
+.reviews-score .rs-btn-primary{background:var(--rs-blue);color:#fff}
+.reviews-score .rs-success{text-align:center;padding:60px 25px}
+.reviews-score .rs-success h2{font:38px Georgia,"Times New Roman",serif;color:var(--rs-navy);letter-spacing:-.02em}
+.reviews-score .rs-success p{max-width:600px;margin:0 auto 25px;color:var(--rs-muted)}
+.reviews-score .rs-quote{
+  text-align:center;
+  max-width:800px;
+  margin:0 auto 90px;
+  padding:0 24px
+}
+.reviews-score .rs-quote p{font:25px/1.5 Georgia,"Times New Roman",serif;color:var(--rs-navy);margin:0}
+.reviews-score .rs-quote small{
+  display:block;
+  margin-top:18px;
+  font-size:11px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--rs-muted)
+}
+@media(max-width:760px){
+  .reviews-score .rs-body{padding:25px 19px}
+  .reviews-score .rs-ratings{grid-template-columns:1fr 1fr}
+  .reviews-score .rs-rate:last-child{grid-column:1/-1}
+  .reviews-score .rs-two{grid-template-columns:1fr}
+  .reviews-score .rs-actions{flex-direction:column-reverse;align-items:stretch}
+  .reviews-score .rs-actions .rs-btn{width:100%}
+  .reviews-score .rs-score{font-size:32px;min-width:52px}
+}
