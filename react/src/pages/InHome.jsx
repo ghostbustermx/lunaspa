@@ -41,20 +41,22 @@ export default function InHome() {
               loading="lazy"
             />
           </a>
-          <Breadcrumb page="In-Home Massage Sayulita" />
+          <Breadcrumb page="Moonlight Couples Ritual" />
           <div className="hero-grid">
             <div>
-              <span className="eyebrow">In-Home Massage Sayulita</span>
-              <h1>In-Home Massage in Sayulita — We Come to You</h1>
+              <span className="eyebrow">Signature ritual · Sayulita</span>
+              <h1>Moonlight Couples Ritual in Sayulita — 90 Minutes for Two</h1>
               <p className="lead">
-                Professional massage without leaving your Airbnb, villa or
-                hotel.
+                A deep relaxation experience to share. Includes an integrative
+                body massage, hot stone therapy to dissolve muscle tension, and
+                a nourishing facial mask that restores freshness and luminosity
+                to the skin. The perfect ritual to connect, rest and renew
+                energies together.
               </p>
               <RatingStrip />
-              <span className="price-pill">✦ From $950 MXN · 60 min</span>
+              <span className="price-pill">✦ $3,200 MXN · 90 min</span>
               <p className="micro">
-                You already have the perfect place to relax. We'll bring the
-                massage.
+                Option 90 min: Massage + Face Mask + Hot Stones — $3,200 MXN
               </p>
             </div>
             <div className="hero-card">
@@ -62,7 +64,7 @@ export default function InHome() {
                 src={`${import.meta.env.BASE_URL}assets/luna_spa_3.webp`}
                 alt="Luna Spa in-home massage beside a private pool surrounded by tropical greenery"
               />
-              <QuickBook />
+              <QuickBook href={LINKS.bookMoonlight} />
             </div>
           </div>
         </div>
@@ -293,9 +295,9 @@ export default function InHome() {
           <InternalLinks
             links={[
               { to: "/", label: "Massage in Sayulita" },
-              { to: "/deep-tissue-massage", label: "Deep Tissue Massage" },
-              { to: "/couples-massage", label: "Couples Massage" },
-              { to: "/group-massage", label: "Group Massage" }
+              { to: "/sayulita-reset", label: "Sayulita Reset" },
+              { to: "/after-surfing", label: "After Surfing" },
+              { to: "/luminous-skin", label: "Luminous Skin" }
             ]}
           />
         </div>

@@ -17,6 +17,18 @@ export const LINKS = {
   ),
   planGroup: wa(
     "Hi Luna Spa, I'm planning a group massage. Our group size is ____."
+  ),
+  bookMoonlight: wa(
+    "Hi Luna Spa, I'd like to book the Moonlight Couples Ritual (90 min)."
+  ),
+  bookReset: wa(
+    "Hi Luna Spa, I'd like to book the Sayulita Reset (90 min: massage + hydrating facial)."
+  ),
+  bookAfterSurf: wa(
+    "Hi Luna Spa, I'd like to book the After Surfing ritual (90 min: sports massage + soothing facial)."
+  ),
+  bookLuminous: wa(
+    "Hi Luna Spa, I'd like to book the Luminous Skin ritual (90 min: full-body exfoliation + massage)."
   )
 };
 
@@ -33,6 +45,7 @@ export const TREATMENTS = [
     name: "Relaxing Massage",
     duration: "60 min",
     price: "$950 MXN",
+    price90: "90 min · $1,300 MXN",
     description:
       "Gentle massage focused on stress relief, muscle relaxation and overall well-being.",
     badge: "Popular choice"
@@ -41,9 +54,10 @@ export const TREATMENTS = [
     id: "therapeutic",
     name: "Therapeutic Massage",
     duration: "60 min",
-    price: "$950 MXN",
+    price: "$1,000 MXN",
+    price90: "90 min · $1,350 MXN",
     description:
-      "Focused work for specific areas of muscle tension or discomfort."
+      "Focused on specific areas of pain or muscle tightness, it helps release muscular tension and improve mobility."
   },
   {
     id: "prenatal",
@@ -57,25 +71,30 @@ export const TREATMENTS = [
     id: "deep",
     name: "Deep Tissue Massage",
     duration: "60 min",
-    price: "$1,000 MXN",
-    description: "Focused work on deeper muscle layers, tension and stiffness.",
+    price: "$1,050 MXN",
+    price90: "90 min · $1,400 MXN",
+    description:
+      "Works the deeper muscle layers to relieve chronic contractures, stiffness and persistent discomfort.",
     badge: "Popular choice",
-    href: "deep-tissue"
+    href: "sayulita-reset"
   },
   {
     id: "hot-stone",
     name: "Hot Stone Massage",
     duration: "75 min",
-    price: "$1,200 MXN",
-    description: "Massage combined with warm stones for a deeply relaxing experience."
+    price: "$1,350 MXN",
+    price90: "90 min · $1,500 MXN",
+    description:
+      "Combines heat and massage to relax the muscles, improve circulation and provide a deep sense of well-being."
   },
   {
     id: "luna",
     name: "Luna Massage",
     duration: "75 min",
-    price: "$1,300 MXN",
+    price: "$1,400 MXN",
+    price90: "90 min · $1,550 MXN",
     description:
-      "Signature combination of therapeutic, deep tissue and hot stone techniques.",
+      "A combination of techniques — therapeutic, de-contracting and hot stone — using oils with analgesic and anti-inflammatory effects (arnica, rosemary, calendula, cinnamon, turmeric and black cumin).",
     badge: "Popular choice"
   },
   {
@@ -85,27 +104,40 @@ export const TREATMENTS = [
     price: "$1,400 MXN",
     description:
       "A gentle treatment focused on lymphatic circulation and a feeling of lightness."
+  },
+  {
+    id: "sports",
+    name: "Sports Massage",
+    duration: "60 min",
+    price: "$1,200 MXN",
+    price90: "90 min · $1,650 MXN",
+    description:
+      "A firm, deep-pressure therapeutic treatment designed to release muscle tension built up from training or intense physical activity. Helps deactivate trigger points (knots), reduce muscle fatigue, improve flexibility and accelerate the body's natural recovery process. Ideal for preventing injuries and maintaining optimal physical performance.",
+    recommended:
+      "Recommended for: Athletes, people preparing for competitions, or anyone experiencing severe muscle fatigue from physical activity."
   }
 ];
 
 export const PRICE_ROWS = [
   ["Relaxing Massage", "60 min", "$950 MXN"],
-  ["Therapeutic Massage", "60 min", "$950 MXN"],
+  ["Therapeutic Massage", "60 min", "$1,000 MXN"],
   ["Mom-to-Be Massage", "60 min", "$950 MXN"],
-  ["Deep Tissue Massage", "60 min", "$1,000 MXN"],
-  ["Hot Stone Massage", "75 min", "$1,200 MXN"],
-  ["Luna Massage", "75 min", "$1,300 MXN"],
-  ["Manual Lymphatic Drainage", "75 min", "$1,400 MXN"]
+  ["Deep Tissue Massage", "60 min", "$1,050 MXN"],
+  ["Hot Stone Massage", "75 min", "$1,350 MXN"],
+  ["Luna Massage", "75 min", "$1,400 MXN"],
+  ["Manual Lymphatic Drainage", "75 min", "$1,400 MXN"],
+  ["Sports Massage", "60 min", "$1,200 MXN"]
 ];
 
 export const PRICE_ROWS_90 = [
   ["Relaxing Massage", "60 min", "$950 MXN", "90 min", "$1,300 MXN"],
-  ["Therapeutic Massage", "60 min", "$950 MXN", "90 min", "$1,300 MXN"],
+  ["Therapeutic Massage", "60 min", "$1,000 MXN", "90 min", "$1,350 MXN"],
   ["Mom-to-Be Massage", "60 min", "$950 MXN", "90 min", "$1,300 MXN"],
-  ["Deep Tissue Massage", "60 min", "$1,000 MXN", "90 min", "$1,350 MXN"],
-  ["Hot Stone Massage", "75 min", "$1,200 MXN", "90 min", "$1,400 MXN"],
-  ["Luna Massage", "75 min", "$1,300 MXN", "90 min", "$1,500 MXN"],
-  ["Manual Lymphatic Drainage", "75 min", "$1,400 MXN", "90 min", "$1,600 MXN"]
+  ["Deep Tissue Massage", "60 min", "$1,050 MXN", "90 min", "$1,400 MXN"],
+  ["Hot Stone Massage", "75 min", "$1,350 MXN", "90 min", "$1,500 MXN"],
+  ["Luna Massage", "75 min", "$1,400 MXN", "90 min", "$1,550 MXN"],
+  ["Manual Lymphatic Drainage", "75 min", "$1,400 MXN", "90 min", "$1,600 MXN"],
+  ["Sports Massage", "60 min", "$1,200 MXN", "90 min", "$1,650 MXN"]
 ];
 
 export const STEPS = [
@@ -160,6 +192,10 @@ export const FAQS_INHOME = [
     a: "Yes. Tell us where you're staying when you contact Luna Spa so we can coordinate your appointment."
   },
   {
+    q: "What is included in the Moonlight Couples Ritual?",
+    a: "The Moonlight Couples Ritual is a 90-minute experience for two priced at $3,200 MXN. It includes an integrative body massage, hot stone therapy to dissolve muscle tension and a nourishing facial mask that restores freshness and luminosity to the skin."
+  },
+  {
     q: "Can I book at a villa?",
     a: "Yes. Send your villa location and preferred treatment so we can confirm availability."
   },
@@ -175,6 +211,10 @@ export const FAQS_INHOME = [
 
 export const FAQS_DEEP = [
   {
+    q: "What is the Sayulita Reset?",
+    a: "The Sayulita Reset is a 90-minute treatment for $1,600 MXN: 50 minutes of massage of your choice (relaxing, therapeutic or deep tissue) plus a 40-minute hydrating facial, designed to reset your body and refresh your skin after a day at the beach."
+  },
+  {
     q: "Is Deep Tissue Massage painful?",
     a: "Deep tissue is more focused than a relaxing massage, but pressure should remain appropriate for the client. Communicate with your therapist throughout the session."
   },
@@ -184,11 +224,15 @@ export const FAQS_DEEP = [
   },
   {
     q: "How long is the Deep Tissue Massage?",
-    a: "The current menu lists the Deep Tissue Massage as a 60-minute treatment for $1,000 MXN."
+    a: "The current menu lists the Deep Tissue Massage as a 60-minute treatment for $1,050 MXN."
   }
 ];
 
 export const FAQS_COUPLES = [
+  {
+    q: "What is the After Surfing ritual?",
+    a: "The After Surfing ritual is a 90-minute treatment for $1,800 MXN: 50 minutes of sports massage plus a 40-minute soothing facial with concentrated aloe vera, designed to release muscle overload and repair skin exposed to sun and salt."
+  },
   {
     q: "Do we have to choose the same massage?",
     a: "No. Tell us what each person prefers so we can coordinate the treatments accordingly."
@@ -209,6 +253,10 @@ export const FAQS_COUPLES = [
 
 export const FAQS_GROUP = [
   {
+    q: "What is the Luminous Skin ritual?",
+    a: "The Luminous Skin ritual is a 90-minute treatment for $1,650 MXN: full-body exfoliation and hydration plus a massage, designed to restore softness and glow to the skin while relieving muscle tension."
+  },
+  {
     q: "How many people can book a group massage?",
     a: "Availability depends on the requested date, time, location, treatments and therapist availability. Tell us your group size when you contact us."
   },
@@ -227,10 +275,14 @@ export const FAQS_GROUP = [
   {
     q: "Do you offer group packages?",
     a: "The current menu does not publish a separate group package. Contact Luna Spa for current group availability and pricing."
+  },
+  {
+    q: "Do you offer facials and body treatments?",
+    a: "Yes. Body treatments include the Bridal Veil ritual (2 hrs, $2,000 MXN). Facials: Deep Cleanse ($1,200 MXN, 75–90 min), Revitalizing ($1,100 MXN, 60 min), Oxygenating ($1,100 MXN, 60 min), Hydrating ($900 MXN, 60 min), Calming for Sensitive Skin ($1,000 MXN, 60 min) and Luna Facial ($1,300 MXN, 90 min)."
   }
 ];
 
-const siteUrl = "https://www.lunaspa.example"; // NOTE: replace with final domain before deploy
+const siteUrl = "https://sayulitamassagebyluna.com";
 
 export const SEO = {
   home: {
@@ -284,10 +336,10 @@ export const SEO = {
   },
   inhome: {
     pageClass: "page-inhome",
-    title: "In-Home Massage in Sayulita | Luna Spa",
+    title: "Moonlight Couples Ritual in Sayulita | Luna Spa",
     description:
-      "Enjoy professional in-home massage in Sayulita at your Airbnb, villa or hotel.",
-    url: "/in-home-massage",
+      "Book the Moonlight Couples Ritual in Sayulita: a 90-minute experience for two with massage, hot stones and a facial mask at your Airbnb, villa or hotel.",
+    url: "/moonlight-couples-ritual",
     jsonLd: {
       "@context": "https://schema.org",
       "@graph": [
@@ -302,9 +354,9 @@ export const SEO = {
         },
         {
           "@type": "WebPage",
-          name: "In-Home Massage in Sayulita | Luna Spa",
+          name: "Moonlight Couples Ritual in Sayulita | Luna Spa",
           description:
-            "Enjoy professional in-home massage in Sayulita at your Airbnb, villa or hotel.",
+            "Book the Moonlight Couples Ritual in Sayulita: a 90-minute experience for two with massage, hot stones and a facial mask at your Airbnb, villa or hotel.",
           inLanguage: "en-US"
         },
         {
@@ -314,6 +366,22 @@ export const SEO = {
           provider: { "@id": "#luna-spa" },
           areaServed: { "@type": "City", name: "Sayulita" },
           description: "Professional massage without leaving your Airbnb, villa or hotel."
+        },
+        {
+          "@type": "Service",
+          name: "Moonlight Couples Ritual in Sayulita — 90 Minutes for Two",
+          serviceType: "Couples Massage Ritual Sayulita",
+          provider: { "@id": "#luna-spa" },
+          areaServed: { "@type": "City", name: "Sayulita" },
+          description:
+            "90-minute ritual for two: integrative body massage, hot stone therapy and a nourishing facial mask.",
+          offers: {
+            "@type": "Offer",
+            price: "3200",
+            priceCurrency: "MXN",
+            availability: "https://schema.org/InStock",
+            url: `${siteUrl}/moonlight-couples-ritual`
+          }
         },
         {
           "@type": "FAQPage",
@@ -328,10 +396,10 @@ export const SEO = {
   },
   deep: {
     pageClass: "page-deep",
-    title: "Deep Tissue Massage in Sayulita | Luna Spa",
+    title: "Sayulita Reset — 90-Minute Massage + Facial | Luna Spa",
     description:
-      "Book a deep tissue massage in Sayulita at your Airbnb, villa or hotel. Focused treatment for muscle tension and stiffness.",
-    url: "/deep-tissue-massage",
+      "Book the Sayulita Reset in Sayulita: 90 minutes with a 50-min massage of your choice plus a 40-min hydrating facial at your Airbnb, villa or hotel.",
+    url: "/sayulita-reset",
     jsonLd: {
       "@context": "https://schema.org",
       "@graph": [
@@ -346,9 +414,9 @@ export const SEO = {
         },
         {
           "@type": "WebPage",
-          name: "Deep Tissue Massage in Sayulita | Luna Spa",
+          name: "Sayulita Reset — 90-Minute Massage + Facial | Luna Spa",
           description:
-            "Book a deep tissue massage in Sayulita at your Airbnb, villa or hotel. Focused treatment for muscle tension and stiffness.",
+            "Book the Sayulita Reset in Sayulita: 90 minutes with a 50-min massage of your choice plus a 40-min hydrating facial at your Airbnb, villa or hotel.",
           inLanguage: "en-US"
         },
         {
@@ -359,6 +427,22 @@ export const SEO = {
           areaServed: { "@type": "City", name: "Sayulita" },
           description:
             "Focused massage for deeper muscle tension — brought directly to your accommodation."
+        },
+        {
+          "@type": "Service",
+          name: "Sayulita Reset — 90-Minute Massage + Hydrating Facial",
+          serviceType: "Body Massage and Facial Ritual Sayulita",
+          provider: { "@id": "#luna-spa" },
+          areaServed: { "@type": "City", name: "Sayulita" },
+          description:
+            "90-minute reset treatment: 50 minutes of massage of your choice plus a 40-minute hydrating facial.",
+          offers: {
+            "@type": "Offer",
+            price: "1600",
+            priceCurrency: "MXN",
+            availability: "https://schema.org/InStock",
+            url: `${siteUrl}/sayulita-reset`
+          }
         },
         {
           "@type": "FAQPage",
@@ -373,10 +457,10 @@ export const SEO = {
   },
   couples: {
     pageClass: "page-couples",
-    title: "Couples Massage in Sayulita | Luna Spa",
+    title: "After Surfing — 90-Minute Massage + Facial | Luna Spa",
     description:
-      "Enjoy a private couples massage in Sayulita at your villa, Airbnb or hotel.",
-    url: "/couples-massage",
+      "Recover after surfing, hiking or an adventure day in Sayulita: 90 minutes with a 50-min sports massage plus a 40-min soothing facial at your Airbnb or hotel.",
+    url: "/after-surfing",
     jsonLd: {
       "@context": "https://schema.org",
       "@graph": [
@@ -391,9 +475,9 @@ export const SEO = {
         },
         {
           "@type": "WebPage",
-          name: "Couples Massage in Sayulita | Luna Spa",
+          name: "After Surfing — 90-Minute Massage + Facial | Luna Spa",
           description:
-            "Enjoy a private couples massage in Sayulita at your villa, Airbnb or hotel.",
+            "Recover after surfing, hiking or an adventure day in Sayulita: 90 minutes with a 50-min sports massage plus a 40-min soothing facial at your Airbnb or hotel.",
           inLanguage: "en-US"
         },
         {
@@ -403,6 +487,22 @@ export const SEO = {
           provider: { "@id": "#luna-spa" },
           areaServed: { "@type": "City", name: "Sayulita" },
           description: "Relax together without leaving your Airbnb, villa or hotel."
+        },
+        {
+          "@type": "Service",
+          name: "After Surfing — 90-Minute Sports Massage + Soothing Facial",
+          serviceType: "Post-Sports Recovery Ritual Sayulita",
+          provider: { "@id": "#luna-spa" },
+          areaServed: { "@type": "City", name: "Sayulita" },
+          description:
+            "90-minute recovery ritual: 50 minutes of sports massage plus a 40-minute soothing facial with concentrated aloe vera.",
+          offers: {
+            "@type": "Offer",
+            price: "1800",
+            priceCurrency: "MXN",
+            availability: "https://schema.org/InStock",
+            url: `${siteUrl}/after-surfing`
+          }
         },
         {
           "@type": "FAQPage",
@@ -417,10 +517,10 @@ export const SEO = {
   },
   group: {
     pageClass: "page-group",
-    title: "Group Massage in Sayulita | Villa & Girls Trip | Luna Spa",
+    title: "Luminous Skin — 90-Minute Exfoliation + Massage | Luna Spa",
     description:
-      "Plan a group massage in Sayulita for girls trips, retreats, birthdays or special occasions.",
-    url: "/group-massage",
+      "Book the Luminous Skin ritual in Sayulita: 90 minutes of full-body exfoliation, hydration and massage at your villa, Airbnb or hotel. Body treatments and facials available.",
+    url: "/luminous-skin",
     jsonLd: {
       "@context": "https://schema.org",
       "@graph": [
@@ -435,9 +535,9 @@ export const SEO = {
         },
         {
           "@type": "WebPage",
-          name: "Group Massage in Sayulita | Villa & Girls Trip | Luna Spa",
+          name: "Luminous Skin — 90-Minute Exfoliation + Massage | Luna Spa",
           description:
-            "Plan a group massage in Sayulita for girls trips, retreats, birthdays or special occasions.",
+            "Book the Luminous Skin ritual in Sayulita: 90 minutes of full-body exfoliation, hydration and massage at your villa, Airbnb or hotel. Body treatments and facials available.",
           inLanguage: "en-US"
         },
         {
@@ -447,6 +547,22 @@ export const SEO = {
           provider: { "@id": "#luna-spa" },
           areaServed: { "@type": "City", name: "Sayulita" },
           description: "Bring a private spa experience to your villa."
+        },
+        {
+          "@type": "Service",
+          name: "Luminous Skin — 90-Minute Full-Body Exfoliation + Massage",
+          serviceType: "Body Exfoliation and Massage Ritual Sayulita",
+          provider: { "@id": "#luna-spa" },
+          areaServed: { "@type": "City", name: "Sayulita" },
+          description:
+            "90-minute renewal treatment: full-body exfoliation and hydration plus a massage to restore softness and glow while relieving muscle tension.",
+          offers: {
+            "@type": "Offer",
+            price: "1650",
+            priceCurrency: "MXN",
+            availability: "https://schema.org/InStock",
+            url: `${siteUrl}/luminous-skin`
+          }
         },
         {
           "@type": "FAQPage",
@@ -462,8 +578,8 @@ export const SEO = {
 };
 
 export const PAGE_NAV = [
-  { to: "/in-home-massage", label: "In-Home" },
-  { to: "/deep-tissue-massage", label: "Deep Tissue" },
-  { to: "/couples-massage", label: "Couples" },
-  { to: "/group-massage", label: "Groups" }
+  { to: "/moonlight-couples-ritual", label: "Moonlight Couples Ritual" },
+  { to: "/sayulita-reset", label: "Sayulita Reset" },
+  { to: "/after-surfing", label: "After Surfing" },
+  { to: "/luminous-skin", label: "Luminous Skin" }
 ];

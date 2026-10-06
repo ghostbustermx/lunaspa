@@ -297,10 +297,10 @@ export default function Home() {
           />
           <InternalLinks
             links={[
-              { to: "/in-home-massage", label: "In-Home Massage" },
-              { to: "/deep-tissue-massage", label: "Deep Tissue Massage" },
-              { to: "/couples-massage", label: "Couples Massage" },
-              { to: "/group-massage", label: "Group Massage" }
+              { to: "/moonlight-couples-ritual", label: "Moonlight Couples Ritual" },
+              { to: "/sayulita-reset", label: "Sayulita Reset" },
+              { to: "/after-surfing", label: "After Surfing" },
+              { to: "/luminous-skin", label: "Luminous Skin" }
             ]}
           />
           </div>

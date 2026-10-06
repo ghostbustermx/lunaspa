@@ -7,10 +7,10 @@ import { IMG } from "../lib/images";
 
 const SERVICES = [
   { to: "/#treatments", label: "Massages" },
-  { to: "/in-home-massage", label: "In-Home" },
-  { to: "/deep-tissue-massage", label: "Deep Tissue" },
-  { to: "/couples-massage", label: "Couples" },
-  { to: "/group-massage", label: "Groups" }
+  { to: "/moonlight-couples-ritual", label: "Moonlight Couples Ritual" },
+  { to: "/sayulita-reset", label: "Sayulita Reset" },
+  { to: "/after-surfing", label: "After Surfing" },
+  { to: "/luminous-skin", label: "Luminous Skin" }
 ];
 
 function isActive(pathname, to) {

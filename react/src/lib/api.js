@@ -191,3 +191,31 @@ export async function submitReview(payload) {
 
   return json;
 }
+
+/**
+ * Envia la solicitud de cita del formulario "View & Book".
+ *
+ * El backend no guarda nada: arma el correo y lo manda al equipo (con copia
+ * oculta al webmaster). En 422 el error trae `fields` campo a campo para que
+ * el formulario pueda marcar cada invalido donde corresponde.
+ */
+export async function submitBooking(payload) {
+  const res = await fetch(`${API_BASE}/bookings`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify(payload)
+  });
+
+  const json = await res.json().catch(() => ({}));
+
+  if (!res.ok) {
+    const error = new Error(
+      json.error ?? `We could not send your request (${res.status}).`
+    );
+    error.fields = json.errors ?? null;
+    error.status = res.status;
+    throw error;
+  }
+
+  return json;
+}

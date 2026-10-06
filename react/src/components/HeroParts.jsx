@@ -1,6 +1,6 @@
 import { LINKS } from "../lib/site";
 
-export default function QuickBook() {
+export default function QuickBook({ href = LINKS.bookMassage }) {
   return (
     <div className="quick-book">
       <div>
@@ -9,7 +9,7 @@ export default function QuickBook() {
       </div>
       <a
         className="btn"
-        href={LINKS.bookMassage}
+        href={href}
         target="_blank"
         rel="noopener noreferrer"
       >

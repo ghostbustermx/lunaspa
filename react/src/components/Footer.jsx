@@ -41,16 +41,16 @@ export default function Footer() {
             <Link to="/">Massage in Sayulita</Link>
           </p>
           <p>
-            <Link to="/in-home-massage">In-Home Massage</Link>
+            <Link to="/moonlight-couples-ritual">Moonlight Couples Ritual</Link>
           </p>
           <p>
-            <Link to="/deep-tissue-massage">Deep Tissue Massage</Link>
+            <Link to="/sayulita-reset">Sayulita Reset</Link>
           </p>
           <p>
-            <Link to="/couples-massage">Couples Massage</Link>
+            <Link to="/after-surfing">After Surfing</Link>
           </p>
           <p>
-            <Link to="/group-massage">Group Massage</Link>
+            <Link to="/luminous-skin">Luminous Skin</Link>
           </p>
         </div>
         <div>

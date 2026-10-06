@@ -78,7 +78,7 @@ services:
       # en base_url() y en SiteURI, sin normalizar: sin la barra, un
       # "baseURL . 'dashboard'" produce https://ejemplo.comdashboard. Es un fallo
       # de redireccion silencioso, la web carga y los enlaces no funcionan.
-      app.baseURL: ${APP_URL:?define APP_URL en .env, con https:// y CON barra final, ej. https://lunaspa.sayulitatravel.com/}
+      app.baseURL: ${APP_URL:?define APP_URL en .env, con https:// y CON barra final, ej. https://sayulitamassagebyluna.com/}
 
       # No se declara app.proxyIPs. Para confiar en X-Forwarded-Proto, CodeIgniter
       # comprueba que la IP remota entre en esa lista con inet_pton(), que no
@@ -119,17 +119,19 @@ services:
       "database.default.encrypt": "false"
 
       # ------------------------------------------------------------- correo
-      # El backend no envia ningun correo: no hay ninguna llamada a send() en
-      # toda la aplicacion, solo guarda el correo de reseñas y usuarios. Estas
-      # variables quedan por si se anade envio en el futuro; rellenarlas ahora no
-      # cambia nada. En cualquier caso, no se deja ninguna credencial SMTP en el
-      # repositorio.
+      # El formulario "View & Book" del sitio envia dos correos por reserva
+      # (uno al equipo y una constancia). Sin SMTP_HOST la peticion cae a
+      # mail(), que no existe en este contenedor, y el envio devuelve error.
+      # Gmail exige una App Password y SMTP_USER debe ser la cuenta QUE LA
+      # GENERO; la constancia sale con From = SMTP_USER para pasar SPF/DKIM de
+      # gmail.com. Las credenciales van en el .env del VPS, nunca aqui.
       email.SMTPHost: ${SMTP_HOST:-}
       email.SMTPUser: ${SMTP_USER:-}
       email.SMTPPass: ${SMTP_PASS:-}
       email.SMTPPort: ${SMTP_PORT:-587}
       email.SMTPCrypto: ${SMTP_CRYPTO:-tls}
       email.SMTPAuthMethod: ${SMTP_AUTH_METHOD:-login}
+      email.SMTPTimeOut: ${SMTP_TIMEOUT:-10}
     volumes:
       # Los unicos dos motivos por los que hacen falta volumenes: las fotos del
       # blog y las sesiones del panel. Sin ellos, un "down" seguido de un "up"

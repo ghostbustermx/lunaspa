@@ -13,10 +13,10 @@ import { useSiteEffects, scrollToId } from "../lib/effects";
 
 const PAGE_CLASS = {
   "/": "page-home",
-  "/in-home-massage": "page-inhome",
-  "/deep-tissue-massage": "page-deep",
-  "/couples-massage": "page-couples",
-  "/group-massage": "page-group",
+  "/moonlight-couples-ritual": "page-inhome",
+  "/sayulita-reset": "page-deep",
+  "/after-surfing": "page-couples",
+  "/luminous-skin": "page-group",
   "/reviews": "page-reviews",
   "/reviews-score": "page-reviews-score",
   "/wellness-guide": "page-guide"

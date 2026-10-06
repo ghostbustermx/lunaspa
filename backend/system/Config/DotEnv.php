@@ -61,7 +61,7 @@ class DotEnv
 
         // Ensure the file is readable
         if (! is_readable($this->path)) {
-            throw new InvalidArgumentException("The .env file is not readable: {$this->path}");
+            throw $this->invalidArgument("The .env file is not readable: {$this->path}");
         }
 
         $vars = [];
@@ -176,11 +176,26 @@ class DotEnv
 
             // Unquoted values cannot contain whitespace
             if (preg_match('/\s+/', $value) > 0) {
-                throw new InvalidArgumentException('.env values containing spaces must be surrounded by quotes.');
+                throw $this->invalidArgument('.env values containing spaces must be surrounded by quotes.');
             }
         }
 
         return $value;
+    }
+
+    /**
+     * El .env se carga antes de registrar el autoloader, por lo que la
+     * excepcion del framework puede no existir aun y el error real quedaria
+     * enmascarado por un "Class not found". Si aun no esta cargada, se lanza
+     * la excepcion global equivalente (la del framework la extiende).
+     */
+    private function invalidArgument(string $message): \InvalidArgumentException
+    {
+        if (class_exists(InvalidArgumentException::class, false)) {
+            return new InvalidArgumentException($message);
+        }
+
+        return new \InvalidArgumentException($message);
     }
 
     /**

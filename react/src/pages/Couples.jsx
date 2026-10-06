@@ -41,30 +41,41 @@ export default function Couples() {
               loading="lazy"
             />
           </a>
-          <Breadcrumb page="Couples Massage Sayulita" />
+          <Breadcrumb page="After Surfing" />
           <div className="hero-grid">
             <div>
-              <span className="eyebrow">Couples Massage Sayulita</span>
+              <span className="eyebrow">Post-surf recovery ritual · Sayulita</span>
               <h1>
-                Couples Massage in Sayulita — A Private Spa Experience for Two
+                After Surfing & After a Day of Adventure — 90-Minute Recovery
+                Ritual
               </h1>
               <p className="lead">
-                Relax together without leaving your Airbnb, villa or hotel.
+                Intensive recovery therapy designed specifically to release
+                muscle overload and repair skin exposed to the elements.
+                Includes 50 minutes of deep tissue massage focused on releasing
+                the back, shoulders and legs, followed by a 40-minute facial
+                with concentrated aloe vera that calms, decongests and
+                regenerates skin damaged by sun and salt.
               </p>
               <RatingStrip />
-              <span className="price-pill">✦ From $950 MXN · 60 min</span>
+              <span className="price-pill">✦ $1,800 MXN · 90 min</span>
               <p className="micro">
-                Your vacation is already the perfect excuse to slow down. Make
-                it even better with a private massage experience in the comfort
-                of your own space.
+                90 min: 50 min sports massage + 40 min soothing facial — $1,800
+                MXN
               </p>
+              <ul className="story-points" style={{ order: 6 }}>
+                <li>After surfing</li>
+                <li>After an excursion</li>
+                <li>After hiking</li>
+                <li>After intense physical activity</li>
+              </ul>
             </div>
             <div className="hero-card">
               <HeroPhoto
                 src={`${import.meta.env.BASE_URL}assets/luna_spa_10.webp`}
                 alt="Two massage tables prepared for a private couples spa experience at Luna Spa"
               />
-              <QuickBook />
+              <QuickBook href={LINKS.bookAfterSurf} />
             </div>
           </div>
         </div>
@@ -247,9 +258,9 @@ export default function Couples() {
           <InternalLinks
             links={[
               { to: "/", label: "Massage in Sayulita" },
-              { to: "/in-home-massage", label: "In-Home Massage" },
-              { to: "/deep-tissue-massage", label: "Deep Tissue Massage" },
-              { to: "/group-massage", label: "Group Massage" }
+              { to: "/moonlight-couples-ritual", label: "Moonlight Couples Ritual" },
+              { to: "/sayulita-reset", label: "Sayulita Reset" },
+              { to: "/luminous-skin", label: "Luminous Skin" }
             ]}
           />
         </div>

@@ -40,21 +40,25 @@ export default function DeepTissue() {
               loading="lazy"
             />
           </a>
-          <Breadcrumb page="Deep Tissue Massage Sayulita" />
+          <Breadcrumb page="Sayulita Reset" />
           <div className="hero-grid">
             <div>
-              <span className="eyebrow">Deep Tissue Massage Sayulita</span>
-              <h1>Deep Tissue Massage in Sayulita, Mexico</h1>
+              <span className="eyebrow">Beach recovery ritual · Sayulita</span>
+              <h1>Sayulita Reset — 90-Minute Massage + Hydrating Facial</h1>
               <p className="lead">
-                Focused massage for deeper muscle tension — brought directly to
-                your accommodation.
+                Reset your body and refresh your skin after a day at the beach.
+                The ultimate treatment to reset your body after a day under the
+                Sayulita sun, combining 50 minutes of customized body massage
+                (chosen to your body's needs) with a 40-minute highly hydrating
+                express facial. Restores skin elasticity, relieves physical
+                fatigue and returns the comfort lost to heat, salt and wind.
               </p>
               <RatingStrip />
-              <span className="price-pill">✦ $1,000 MXN · 60 min</span>
+              <span className="price-pill">✦ $1,600 MXN · 90 min</span>
               <p className="micro">
-                If your body needs more than a gentle relaxation massage, Luna
-                Spa's Deep Tissue Massage focuses on deeper muscle layers and
-                areas of persistent tension.
+                90 minutes: 50 min massage of your choice — relaxing,
+                therapeutic or deep tissue + 40 min hydrating facial — $1,600
+                MXN
               </p>
             </div>
             <div className="hero-card">
@@ -62,7 +66,7 @@ export default function DeepTissue() {
                 src={`${import.meta.env.BASE_URL}assets/luna_spa_6.webp`}
                 alt="Deep tissue massage treatment at Luna Spa with a tropical ocean-view setting"
               />
-              <QuickBook />
+              <QuickBook href={LINKS.bookReset} />
             </div>
           </div>
         </div>
@@ -218,13 +222,13 @@ export default function DeepTissue() {
         <div className="container">
           <SectionHead
             kicker="Deep Tissue price"
-            title="$1,000 MXN · 60 minutes."
-            text="The current Luna Spa menu lists Deep Tissue Massage at 60 minutes for $1,000 MXN."
+            title="$1,050 MXN · 60 minutes."
+            text="The current Luna Spa menu lists Deep Tissue Massage at 60 minutes for $1,050 MXN."
           />
           <div className="card">
             <div className="price-row">
               <div>
-                <div className="price">$1,000 MXN</div>
+                <div className="price">$1,050 MXN</div>
                 <div className="duration">
                   60-minute Deep Tissue Massage
                 </div>
@@ -275,9 +279,9 @@ export default function DeepTissue() {
           <InternalLinks
             links={[
               { to: "/", label: "Massage in Sayulita" },
-              { to: "/in-home-massage", label: "In-Home Massage" },
-              { to: "/couples-massage", label: "Couples Massage" },
-              { to: "/group-massage", label: "Group Massage" }
+              { to: "/moonlight-couples-ritual", label: "Moonlight Couples Ritual" },
+              { to: "/after-surfing", label: "After Surfing" },
+              { to: "/luminous-skin", label: "Luminous Skin" }
             ]}
           />
         </div>

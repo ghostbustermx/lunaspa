@@ -17,10 +17,10 @@ export default function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
-        <Route path="/in-home-massage" element={<InHome />} />
-        <Route path="/deep-tissue-massage" element={<DeepTissue />} />
-        <Route path="/couples-massage" element={<Couples />} />
-        <Route path="/group-massage" element={<Group />} />
+        <Route path="/moonlight-couples-ritual" element={<InHome />} />
+        <Route path="/sayulita-reset" element={<DeepTissue />} />
+        <Route path="/after-surfing" element={<Couples />} />
+        <Route path="/luminous-skin" element={<Group />} />
         <Route path="/reviews" element={<Reviews />} />
         {/* Modulo de la plantilla de reseñas: sin enlace en menu todavia. */}
         <Route path="/reviews-score" element={<ReviewsScore />} />

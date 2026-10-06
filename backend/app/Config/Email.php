@@ -6,9 +6,24 @@ use CodeIgniter\Config\BaseConfig;
 
 class Email extends BaseConfig
 {
-    public string $fromEmail  = '';
-    public string $fromName   = '';
-    public string $recipients = '';
+    /**
+     * Destinatarios de las solicitudes de reserva (formulario "View & Book").
+     * Todo parametrizable desde el .env sin tocar codigo:
+     *
+     *   email.recipients = otro@dominio.com
+     *   email.bcc        = copia1@x.com, copia2@x.com
+     *   email.fromEmail  = no-reply@dominio.com
+     *   email.fromName   = Luna Spa
+     *
+     * $recipients: equipo (recibe el correo con From info@sayulitatravel.com).
+     * $bcc: constancia para el webmaster; se envia como SEGUNDO CORREO con la
+     * identidad de la cuenta SMTP (email.SMTPUser), porque el From del dominio
+     * no tiene DKIM y esos mensajes caian en spam.
+     */
+    public string $fromEmail  = 'info@sayulitatravel.com';
+    public string $fromName   = 'Luna Spa';
+    public string $recipients = 'info@sayulitatravel.com';
+    public string $bcc        = 'webmaster@venadoblanco.com';
 
     /**
      * The "user agent"

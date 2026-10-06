@@ -23,6 +23,10 @@ $routes->group('api', [], static function (RouteCollection $routes): void {
     $routes->get('reviews',         'Api\Reviews::index');
     $routes->post('reviews',        'Api\Reviews::store');
     $routes->options('reviews',      'Api\Reviews::index');
+
+    // Solicitudes de cita del formulario "View & Book" de las tarjetas.
+    $routes->post('bookings',   'Api\Bookings::store');
+    $routes->options('bookings', 'Api\Bookings::store');
 });
 
 // -----------------------------------------------------------------

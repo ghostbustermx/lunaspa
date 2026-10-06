@@ -1294,9 +1294,10 @@ body.page-ready .hero .hero-grid > :nth-child(2){transition-delay:.12s}
 .page-home .section-sm:first-of-type .service-card:nth-child(2){grid-column:span 5}
 .page-home .section-sm:first-of-type .service-card:nth-child(3){grid-column:span 5}
 .page-home .section-sm:first-of-type .service-card:nth-child(4){grid-column:span 7}
-.page-home .section-sm:first-of-type .service-card:nth-child(5){grid-column:span 4}
-.page-home .section-sm:first-of-type .service-card:nth-child(6){grid-column:span 4}
-.page-home .section-sm:first-of-type .service-card:nth-child(7){grid-column:span 4}
+.page-home .section-sm:first-of-type .service-card:nth-child(5){grid-column:span 3}
+.page-home .section-sm:first-of-type .service-card:nth-child(6){grid-column:span 3}
+.page-home .section-sm:first-of-type .service-card:nth-child(7){grid-column:span 3}
+.page-home .section-sm:first-of-type .service-card:nth-child(8){grid-column:span 3}
 .page-home .section-sm:first-of-type .service-card{min-height:230px;display:flex;flex-direction:column;justify-content:space-between}
 .page-home .section-sm:first-of-type .service-card h3{font-size:1.55rem}
 .page-home .section-sm:first-of-type .service-card:nth-child(1) h3,
@@ -1371,7 +1372,7 @@ body.page-ready .hero .hero-grid > :nth-child(2){transition-delay:.12s}
   box-shadow:0 30px 90px rgba(0,0,0,.24),inset 0 0 80px rgba(115,211,229,.05);
 }
 .page-deep .logo-wrap:before{
-  content:"FOCUSED  •  60 MIN  •  $1,000 MXN";
+  content:"FOCUSED  •  60 MIN  •  $1,050 MXN";
   position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
   white-space:nowrap;padding:9px 13px;border:1px solid rgba(159,230,239,.22);border-radius:999px;
   background:rgba(7,31,53,.76);backdrop-filter:blur(8px);
@@ -2924,5 +2925,37 @@ body.page-ready .hero .hero-grid > :nth-child(2){transition-delay:.12s}
   .reviews-page *,
   .reviews-page *:before,
   .reviews-page *:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+}
+
+/* ---------------------------------------------------------
+   BOOKING MODAL — formulario "View & Book" de las tarjetas
+   --------------------------------------------------------- */
+.booking-modal-card{width:min(560px,100%)}
+.bm-body{padding:22px 30px 30px}
+.bm-treatment{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#f4f8fa;border:1px solid #e2ecf2;border-radius:14px;padding:12px 16px;margin-bottom:18px}
+.bm-treatment span{font-weight:900;color:var(--royal);font-size:.95rem}
+.bm-treatment strong{color:var(--muted);font-size:.82rem;white-space:nowrap}
+.bm-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.bm-field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.bm-field.full{grid-column:1 / -1}
+.bm-field label{font-size:.72rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+.bm-field input,.bm-field textarea{width:100%;box-sizing:border-box;border:1px solid #d5e0e8;border-radius:12px;padding:11px 14px;font-size:.95rem;color:var(--ink);background:#fff;transition:border-color .2s ease,box-shadow .2s ease}
+.bm-field input:focus,.bm-field textarea:focus{outline:none;border-color:#087f9a;box-shadow:0 0 0 4px rgba(8,127,154,.15)}
+.bm-field textarea{min-height:84px;resize:vertical;line-height:1.55}
+.bm-field input[aria-invalid="true"],.bm-field textarea[aria-invalid="true"]{border-color:#d64545}
+.bm-error{font-size:.76rem;font-weight:700;color:#d64545}
+.bm-failure{background:#fdecec;border:1px solid #f5c2c2;color:#a12b2b;border-radius:12px;padding:10px 14px;font-size:.86rem;margin-bottom:14px}
+.bm-hp{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.bm-actions{display:flex;align-items:center;gap:14px;margin-top:18px;flex-wrap:wrap}
+.bm-form .btn:disabled{opacity:.7;cursor:wait;transform:none}
+.bm-note{font-size:.78rem;line-height:1.5;color:var(--muted);max-width:270px}
+.bm-success{text-align:center;padding:8px 0 4px}
+.bm-success-icon{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:50%;background:#e7f6ec;color:#1e8e4a;font-size:1.5rem;margin-bottom:12px}
+.bm-success p{margin:0 auto 18px;max-width:40ch;color:var(--ink);font-size:.95rem;line-height:1.6}
+@media (max-width:560px){
+  .bm-body{padding:18px 20px 24px}
+  .bm-grid{grid-template-columns:1fr}
+  .bm-actions{flex-direction:column;align-items:stretch}
+  .bm-note{max-width:none;text-align:center}
 }
 
