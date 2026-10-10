@@ -1463,24 +1463,28 @@ body.page-ready .hero .hero-grid > :nth-child(2){transition-delay:.12s}
 }
 .page-group .logo-wrap img{width:220px}
 .page-group .quick-book{background:var(--royal)}
-.page-group main>.section:nth-of-type(2){background:#fff}
-.page-group main>.section:nth-of-type(2) .grid-2{grid-template-columns:repeat(4,1fr)}
-.page-group main>.section:nth-of-type(2) .card{min-height:255px;display:flex;flex-direction:column;justify-content:flex-end}
-.page-group main>.section:nth-of-type(3){background:linear-gradient(180deg,#eefafd,#fff)}
-.page-group main>.section:nth-of-type(3) .check-list{
-  max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:14px;padding:0;list-style:none;counter-reset:plan;
+.page-group main>.section:nth-of-type(2){background:linear-gradient(180deg,#eefafd,#fff)}
+.page-group main>.section:nth-of-type(3){background:#fffdf9}
+.page-group main>.section:nth-of-type(3) .card{max-width:950px;margin-inline:auto!important;background:linear-gradient(135deg,#082a43,#163f73);color:#fff;border:0}
+.page-group main>.section:nth-of-type(3) .card h3{color:#fff}
+.page-group main>.section:nth-of-type(3) .card p{color:#d8e7ee}
+
+/* ---------------------------------------------------------
+   BODY TREATMENTS & FACIALS — PRIVATE SKIN RITUALS
+   Visual idea: soft, luminous, spa-calm. Mirrors Luminous Skin.
+   --------------------------------------------------------- */
+.page-body .hero{
+  background:
+    linear-gradient(135deg,#f7fcfd 0%,#eaf7f9 52%,#fffdf9 100%);
 }
-.page-group main>.section:nth-of-type(3) .check-list li{
-  counter-increment:plan;position:relative;padding:20px 20px 20px 66px;background:#fff;border:1px solid var(--line);border-radius:18px;font-weight:800;color:var(--royal);box-shadow:var(--shadow-sm);
+.page-body .hero-grid{grid-template-columns:1.12fr .88fr;gap:65px}
+.page-body .quick-book{background:var(--royal)}
+.page-body .photo-hero img{height:480px}
+.page-body .visual-story .story-image img{height:450px}
+.page-body .section-head h2{max-width:820px}
+@media (max-width:620px){
+  .page-body .hero-grid{gap:34px}
 }
-.page-group main>.section:nth-of-type(3) .check-list li:before{
-  content:counter(plan);position:absolute;left:18px;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--sky-soft);border:1px solid #c8e8ee;color:var(--royal);font-size:.8rem;font-weight:950;
-}
-.page-group main>.section:nth-of-type(4){background:#fffdf9}
-.page-group main>.section:nth-of-type(4) .price-table-wrap{max-width:950px;margin-inline:auto}
-.page-group main>.section:nth-of-type(4) .card{max-width:950px;margin-inline:auto!important;background:linear-gradient(135deg,#082a43,#163f73);color:#fff;border:0}
-.page-group main>.section:nth-of-type(4) .card h3{color:#fff}
-.page-group main>.section:nth-of-type(4) .card p{color:#d8e7ee}
 
 /* ---------------------------------------------------------
    Intent-specific section dividers / typography

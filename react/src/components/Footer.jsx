@@ -52,6 +52,9 @@ export default function Footer() {
           <p>
             <Link to="/luminous-skin">Luminous Skin</Link>
           </p>
+          <p>
+            <Link to="/body-treatments-facials">Body Treatments & Facials</Link>
+          </p>
         </div>
         <div>
           <h3>Book</h3>

@@ -10,7 +10,8 @@ const SERVICES = [
   { to: "/moonlight-couples-ritual", label: "Moonlight Couples Ritual" },
   { to: "/sayulita-reset", label: "Sayulita Reset" },
   { to: "/after-surfing", label: "After Surfing" },
-  { to: "/luminous-skin", label: "Luminous Skin" }
+  { to: "/luminous-skin", label: "Luminous Skin" },
+  { to: "/body-treatments-facials", label: "Body Treatments & Facials" }
 ];
 
 function isActive(pathname, to) {

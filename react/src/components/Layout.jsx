@@ -17,6 +17,7 @@ const PAGE_CLASS = {
   "/sayulita-reset": "page-deep",
   "/after-surfing": "page-couples",
   "/luminous-skin": "page-group",
+  "/body-treatments-facials": "page-body",
   "/reviews": "page-reviews",
   "/reviews-score": "page-reviews-score",
   "/wellness-guide": "page-guide"

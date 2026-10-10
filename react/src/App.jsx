@@ -5,6 +5,7 @@ import InHome from "./pages/InHome";
 import DeepTissue from "./pages/DeepTissue";
 import Couples from "./pages/Couples";
 import Group from "./pages/Group";
+import BodyTreatments from "./pages/BodyTreatments";
 import Reviews from "./pages/Reviews";
 import ReviewsScore from "./pages/ReviewsScore";
 import WellnessGuide from "./pages/WellnessGuide";
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/sayulita-reset" element={<DeepTissue />} />
         <Route path="/after-surfing" element={<Couples />} />
         <Route path="/luminous-skin" element={<Group />} />
+        <Route path="/body-treatments-facials" element={<BodyTreatments />} />
         <Route path="/reviews" element={<Reviews />} />
         {/* Modulo de la plantilla de reseñas: sin enlace en menu todavia. */}
         <Route path="/reviews-score" element={<ReviewsScore />} />

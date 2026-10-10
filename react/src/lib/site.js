@@ -29,6 +29,9 @@ export const LINKS = {
   ),
   bookLuminous: wa(
     "Hi Luna Spa, I'd like to book the Luminous Skin ritual (90 min: full-body exfoliation + massage)."
+  ),
+  bookBody: wa(
+    "Hi Luna Spa, I'd like to book a body treatment or facial (e.g., Bridal Veil or a custom facial)."
   )
 };
 
@@ -63,7 +66,7 @@ export const TREATMENTS = [
     id: "prenatal",
     name: "Mom-to-Be Massage",
     duration: "60 min",
-    price: "$950 MXN",
+    price: "$1,000 MXN",
     description:
       "A pregnancy-focused massage for eligible clients who meet Luna Spa's pre-service requirements."
   },
@@ -98,14 +101,6 @@ export const TREATMENTS = [
     badge: "Popular choice"
   },
   {
-    id: "lymphatic",
-    name: "Manual Lymphatic Drainage",
-    duration: "75 min",
-    price: "$1,400 MXN",
-    description:
-      "A gentle treatment focused on lymphatic circulation and a feeling of lightness."
-  },
-  {
     id: "sports",
     name: "Sports Massage",
     duration: "60 min",
@@ -121,22 +116,20 @@ export const TREATMENTS = [
 export const PRICE_ROWS = [
   ["Relaxing Massage", "60 min", "$950 MXN"],
   ["Therapeutic Massage", "60 min", "$1,000 MXN"],
-  ["Mom-to-Be Massage", "60 min", "$950 MXN"],
+  ["Mom-to-Be Massage", "60 min", "$1,000 MXN"],
   ["Deep Tissue Massage", "60 min", "$1,050 MXN"],
   ["Hot Stone Massage", "75 min", "$1,350 MXN"],
   ["Luna Massage", "75 min", "$1,400 MXN"],
-  ["Manual Lymphatic Drainage", "75 min", "$1,400 MXN"],
   ["Sports Massage", "60 min", "$1,200 MXN"]
 ];
 
 export const PRICE_ROWS_90 = [
   ["Relaxing Massage", "60 min", "$950 MXN", "90 min", "$1,300 MXN"],
   ["Therapeutic Massage", "60 min", "$1,000 MXN", "90 min", "$1,350 MXN"],
-  ["Mom-to-Be Massage", "60 min", "$950 MXN", "90 min", "$1,300 MXN"],
+  ["Mom-to-Be Massage", "60 min", "$1,000 MXN", "90 min", "$1,300 MXN"],
   ["Deep Tissue Massage", "60 min", "$1,050 MXN", "90 min", "$1,400 MXN"],
   ["Hot Stone Massage", "75 min", "$1,350 MXN", "90 min", "$1,500 MXN"],
   ["Luna Massage", "75 min", "$1,400 MXN", "90 min", "$1,550 MXN"],
-  ["Manual Lymphatic Drainage", "75 min", "$1,400 MXN", "90 min", "$1,600 MXN"],
   ["Sports Massage", "60 min", "$1,200 MXN", "90 min", "$1,650 MXN"]
 ];
 
@@ -275,10 +268,25 @@ export const FAQS_GROUP = [
   {
     q: "Do you offer group packages?",
     a: "The current menu does not publish a separate group package. Contact Luna Spa for current group availability and pricing."
-  },
+  }
+];
+
+export const FAQS_BODY = [
   {
     q: "Do you offer facials and body treatments?",
     a: "Yes. Body treatments include the Bridal Veil ritual (2 hrs, $2,000 MXN). Facials: Deep Cleanse ($1,200 MXN, 75–90 min), Revitalizing ($1,100 MXN, 60 min), Oxygenating ($1,100 MXN, 60 min), Hydrating ($900 MXN, 60 min), Calming for Sensitive Skin ($1,000 MXN, 60 min) and Luna Facial ($1,300 MXN, 90 min)."
+  },
+  {
+    q: "Can you come to my Airbnb in Sayulita?",
+    a: "Yes. Tell us where you're staying when you contact Luna Spa so we can coordinate your appointment."
+  },
+  {
+    q: "How long does a facial take?",
+    a: "Most facials are 60 minutes. The Deep Cleanse Facial runs 75–90 minutes and the Luna Facial is 90 minutes. The Bridal Veil body treatment takes 2 hours."
+  },
+  {
+    q: "How do I book?",
+    a: "Choose your treatment, tell us where you're staying, confirm availability, and we'll coordinate the appointment details."
   }
 ];
 
@@ -574,6 +582,67 @@ export const SEO = {
         }
       ]
     }
+  },
+  body: {
+    pageClass: "page-body",
+    title: "Body Treatments & Facials in Sayulita | Luna Spa",
+    description:
+      "Book body treatments and facials in Sayulita: the Bridal Veil ritual and custom facials — Deep Cleanse, Revitalizing, Oxygenating, Hydrating, Calming for Sensitive Skin and Luna Facial — at your Airbnb, villa or hotel.",
+    url: "/body-treatments-facials",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "HealthAndBeautyBusiness",
+          "@id": "#luna-spa",
+          name: "Luna Spa in Sayulita",
+          telephone: "+52 322 288 8447",
+          areaServed: { "@type": "City", name: "Sayulita" },
+          sameAs: ["https://www.sayulitalife.com/business/luna-spa"],
+          priceRange: "$$"
+        },
+        {
+          "@type": "WebPage",
+          name: "Body Treatments & Facials in Sayulita | Luna Spa",
+          description:
+            "Book body treatments and facials in Sayulita: the Bridal Veil ritual and custom facials at your Airbnb, villa or hotel.",
+          inLanguage: "en-US"
+        },
+        {
+          "@type": "Service",
+          name: "Bridal Veil Body Treatment in Sayulita",
+          serviceType: "Body Treatment Sayulita",
+          provider: { "@id": "#luna-spa" },
+          areaServed: { "@type": "City", name: "Sayulita" },
+          description:
+            "Exfoliation, body wrap and hydration that leaves skin smooth, luminous and silky — ideal before special events.",
+          offers: {
+            "@type": "Offer",
+            price: "2000",
+            priceCurrency: "MXN",
+            availability: "https://schema.org/InStock",
+            url: `${siteUrl}/body-treatments-facials`
+          }
+        },
+        {
+          "@type": "Service",
+          name: "Facials in Sayulita — Custom Skincare Rituals",
+          serviceType: "Facial Sayulita",
+          provider: { "@id": "#luna-spa" },
+          areaServed: { "@type": "City", name: "Sayulita" },
+          description:
+            "Customized facials for every skin type: Deep Cleanse, Revitalizing, Oxygenating, Hydrating, Calming for Sensitive Skin and Luna Facial."
+        },
+        {
+          "@type": "FAQPage",
+          mainEntity: FAQS_BODY.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a }
+          }))
+        }
+      ]
+    }
   }
 };
 
@@ -581,5 +650,6 @@ export const PAGE_NAV = [
   { to: "/moonlight-couples-ritual", label: "Moonlight Couples Ritual" },
   { to: "/sayulita-reset", label: "Sayulita Reset" },
   { to: "/after-surfing", label: "After Surfing" },
-  { to: "/luminous-skin", label: "Luminous Skin" }
+  { to: "/luminous-skin", label: "Luminous Skin" },
+  { to: "/body-treatments-facials", label: "Body Treatments & Facials" }
 ];

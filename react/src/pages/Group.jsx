@@ -8,10 +8,8 @@ import FAQ from "../components/Faq";
 import PriceTable from "../components/PriceTable";
 import RoyalCta from "../components/RoyalCta";
 import InternalLinks from "../components/InternalLinks";
-import ViewBookButton from "../components/ViewBookButton";
 import { PhotoMosaic } from "../components/Photos";
 import { SEO, LINKS, PRICE_ROWS, FAQS_GROUP } from "../lib/site";
-import { IMG } from "../lib/images";
 
 export default function Group() {
   const seo = SEO.group;
@@ -59,152 +57,10 @@ export default function Group() {
             </div>
             <div className="hero-card">
               <HeroPhoto
-                src={IMG.group1}
-                alt="Group massage experience prepared for friends and retreats at Luna Spa in Sayulita"
+                src={`${import.meta.env.BASE_URL}assets/Body-Scrubs-1.webp`}
+                alt="Full-body exfoliation scrub treatment at Luna Spa in Sayulita"
               />
               <QuickBook href={LINKS.bookLuminous} />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section soft" id="body-treatments">
-        <div className="container">
-          <SectionHead
-            kicker="Body treatments & facials"
-            title="Body rituals and facials for luminous skin."
-            text="Go beyond massage: a full-body ritual before a special event, or a facial customized to your skin type."
-          />
-          <div className="card">
-            <span className="kicker">Body treatment</span>
-            <h3>Bridal Veil</h3>
-            <p>
-              Exfoliation, body wrap and hydration that leaves skin smooth,
-              luminous and silky — ideal before special events.
-            </p>
-            <div className="price">$2,000 MXN</div>
-            <div className="duration">2 hrs</div>
-            <ViewBookButton
-              treatment={{ name: "Bridal Veil", duration: "2 hrs", price: "$2,000 MXN" }}
-            />
-          </div>
-          <span
-            className="kicker"
-            style={{ display: "block", margin: "28px 0 4px" }}
-          >
-            Facials
-          </span>
-          <div className="grid-3">
-            <div className="card">
-              <h3>Deep Cleanse Facial</h3>
-              <p>
-                <em>{"“Purity and freshness in a single ritual.”"}</em>{" "}
-                Purifying treatment designed to unclog pores, remove blackheads,
-                dead cells and accumulated impurities. Fully customized to your
-                skin type.
-              </p>
-              <div className="price">$1,200 MXN</div>
-              <div className="duration">75–90 min</div>
-              <ViewBookButton
-                treatment={{
-                  name: "Deep Cleanse Facial",
-                  duration: "75–90 min",
-                  price: "$1,200 MXN"
-                }}
-              />
-            </div>
-            <div className="card">
-              <h3>Revitalizing Facial</h3>
-              <p>
-                Intensive brightening therapy designed to restore vitality,
-                luminosity and firmness to dull, fatigued or stressed skin.
-                Vitamin, antioxidant and nourishing active concentrates
-                regenerate skin texture and deeply hydrate, for an instantly
-                radiant, rested look.
-              </p>
-              <div className="price">$1,100 MXN</div>
-              <div className="duration">60 min</div>
-              <ViewBookButton
-                treatment={{
-                  name: "Revitalizing Facial",
-                  duration: "60 min",
-                  price: "$1,100 MXN"
-                }}
-              />
-            </div>
-            <div className="card">
-              <h3>Oxygenating Facial</h3>
-              <p>
-                Detoxifying treatment that stimulates cellular respiration and
-                skin microcirculation. Ideal for congested skin exposed to
-                pollution, sun or environmental stress. Helps eliminate toxins,
-                oxygenate tissues and restore the skin's natural balance,
-                leaving it visibly brighter, fresher and full of energy.
-              </p>
-              <div className="price">$1,100 MXN</div>
-              <div className="duration">60 min</div>
-              <ViewBookButton
-                treatment={{
-                  name: "Oxygenating Facial",
-                  duration: "60 min",
-                  price: "$1,100 MXN"
-                }}
-              />
-            </div>
-            <div className="card">
-              <h3>Hydrating Facial</h3>
-              <p>
-                <em>{"“Deep hydration, radiant skin.”"}</em> Restores the
-                skin's optimal moisture level and relieves the feeling of
-                tightness, leaving it fresh, silky and radiant.
-              </p>
-              <div className="price">$900 MXN</div>
-              <div className="duration">60 min</div>
-              <ViewBookButton
-                treatment={{
-                  name: "Hydrating Facial",
-                  duration: "60 min",
-                  price: "$900 MXN"
-                }}
-              />
-            </div>
-            <div className="card">
-              <h3>Calming Facial for Sensitive Skin</h3>
-              <p>
-                Decongesting and hydrating treatment especially formulated for
-                sensitive, reactive or rosacea-prone skin, and skin irritated by
-                sun and wind exposure. Soothing botanical actives, cold masks
-                and gentle massage techniques reduce redness, relieve burning
-                and restore skin's natural barrier, returning comfort,
-                freshness and softness to sensitive skin.
-              </p>
-              <div className="price">$1,000 MXN</div>
-              <div className="duration">60 min</div>
-              <ViewBookButton
-                treatment={{
-                  name: "Calming Facial for Sensitive Skin",
-                  duration: "60 min",
-                  price: "$1,000 MXN"
-                }}
-              />
-            </div>
-            <div className="card">
-              <h3>Luna Facial</h3>
-              <p>
-                Designed strictly around your needs. This personalized
-                experience combines a specific cleanse, exfoliation and a
-                customized mask with a relaxing massage of the face, neck and
-                scalp, leaving skin radiant and balanced.
-              </p>
-              <div className="price">$1,300 MXN</div>
-              <div className="duration">90 min</div>
-              <ViewBookButton
-                treatment={{
-                  name: "Luna Facial",
-                  duration: "90 min",
-                  price: "$1,300 MXN"
-                }}
-              />
             </div>
           </div>
         </div>

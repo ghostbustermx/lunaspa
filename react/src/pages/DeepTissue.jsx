@@ -63,7 +63,7 @@ export default function DeepTissue() {
             </div>
             <div className="hero-card">
               <HeroPhoto
-                src={`${import.meta.env.BASE_URL}assets/luna_spa_6.webp`}
+                src={`${import.meta.env.BASE_URL}assets/luna_spa_3.webp`}
                 alt="Deep tissue massage treatment at Luna Spa with a tropical ocean-view setting"
               />
               <QuickBook href={LINKS.bookReset} />

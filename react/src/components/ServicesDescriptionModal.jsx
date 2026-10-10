@@ -41,25 +41,6 @@ const MASSAGES = [
     text: "Works on deeper muscle layers to relieve chronic tension, stiffness, and persistent discomfort."
   },
   {
-    title: "TIRED LEGS MASSAGE",
-    text: "Localized treatment that activates circulation, relieves heaviness and provides immediate relief for legs and feet."
-  }
-];
-
-const FACIALS = [
-  {
-    title: "MOISTURIZING FACIAL",
-    text: "Cleansing and hydration treatment that nourishes and revitalizes the skin, leaving it smooth and radiant."
-  },
-  {
-    title: "LUNA FACIAL",
-    text: "An exclusive facial that combines cleansing, exfoliation, and a personalized mask with a relaxing massage of the face, neck, and scalp, leaving the skin radiant and balanced."
-  },
-  {
-    title: "FACIAL LYMPHATIC DRAINAGE",
-    text: "Gentle massage that reduces fluid retention, decreases puffiness, and enhances skin appearance, leaving it fresher and more radiant."
-  },
-  {
     title: "THERAPEUTIC MASSAGE",
     text: "Focused on specific areas of pain or muscle tightness, it helps release tension and improve mobility."
   },
@@ -70,6 +51,37 @@ const FACIALS = [
   {
     title: "LUNA MASSAGE",
     text: "A unique combination of therapeutic, deep tissue, and hot stones techniques, using oils with analgesic and anti-inflammatory properties such as arnica, rosemary, calendula, cinnamon, turmeric and black cumin."
+  },
+  {
+    title: "SPORTS MASSAGE",
+    text: "A firm, deep-pressure therapeutic treatment designed to release muscle tension built up from training or intense physical activity. Helps deactivate trigger points (knots), reduce muscle fatigue, improve flexibility and accelerate the body's natural recovery process. Ideal for preventing injuries and maintaining optimal physical performance. Recommended for: athletes, people preparing for competitions, or anyone experiencing severe muscle fatigue from physical activity."
+  }
+];
+
+const FACIALS = [
+  {
+    title: "DEEP CLEANSE FACIAL",
+    text: "Purity and freshness in a single ritual: purifying treatment designed to unclog pores, remove blackheads, dead cells and accumulated impurities. Fully customized to your skin type."
+  },
+  {
+    title: "REVITALIZING FACIAL",
+    text: "Intensive brightening therapy designed to restore vitality, luminosity and firmness to dull, fatigued or stressed skin. Through the application of vitamin, antioxidant and nourishing active concentrates, it regenerates skin texture and deeply hydrates, achieving an instantly radiant, rested look."
+  },
+  {
+    title: "OXYGENATING FACIAL",
+    text: "Detoxifying treatment that stimulates cellular respiration and skin microcirculation. Ideal for asphyxiated skin exposed to pollution, sun or environmental stress. Helps eliminate toxins, oxygenate tissues and restore the skin's natural balance, leaving it visibly brighter, fresher and full of energy."
+  },
+  {
+    title: "HYDRATING FACIAL",
+    text: "Deep hydration, radiant skin: restores the skin's optimal moisture level and relieves the feeling of tightness, leaving it fresh, silky and radiant."
+  },
+  {
+    title: "CALMING FACIAL FOR SENSITIVE SKIN",
+    text: "Decongesting and hydrating treatment especially formulated for sensitive, reactive or rosacea-prone skin, and skin irritated by sun and wind exposure. Uses soothing botanical actives, cold masks and gentle massage techniques that reduce redness, relieve burning and restore the skin's natural barrier. Returns comfort, freshness and softness to sensitive skin."
+  },
+  {
+    title: "LUNA FACIAL",
+    text: "Adapted strictly to your needs. This personalized experience combines a specific cleansing, exfoliation and a customized mask with a relaxing massage of the face, neck and scalp, leaving the skin radiant and balanced."
   }
 ];
 
@@ -77,10 +89,25 @@ const BODY_TREATMENTS = [
   {
     title: "BRIDAL BODY WRAP",
     text: "Exfoliation, body wrap, and hydration treatment that leaves the skin soft, luminous and silky, ideal before special events."
+  }
+];
+
+const RITUALS = [
+  {
+    title: "MOONLIGHT COUPLES RITUAL",
+    text: "Massage + face mask + hot stones: Moonlight Couples Ritual (90 min). A deep relaxation experience to share. Includes an integrative body massage, hot stone therapy to dissolve muscle tension, and a nourishing facial mask that restores freshness and luminosity to the skin. The perfect ritual to connect, rest and renew energies together."
   },
   {
-    title: "MANUAL LYMPHATIC DRAINAGE",
-    text: "A gentle technique that stimulates lymphatic circulation, promotes the elimination of fluids and toxins, and improves the feeling of lightness."
+    title: "SAYULITA RESET",
+    text: "90 minutes: 50 min massage of your choice between relaxing, therapeutic and deep tissue + 40 min hydrating facial. Reset your body and refresh your skin after a day at the beach. The ultimate treatment to reset your body and refresh your skin after a day under the Sayulita sun. Combines 50 minutes of customized body massage (chosen according to your body's needs) with a 40-minute highly hydrating express facial. Restores skin elasticity, relieves physical fatigue and returns the comfort lost to heat, salt and wind."
+  },
+  {
+    title: "AFTER SURFING",
+    text: "90 min: 50 minutes of sports massage + 40 min soothing facial. After surfing & after an adventure day (90 min). Intensive recovery therapy specifically designed to release muscle overload and repair skin exposed to the elements. Includes 50 minutes of deep tissue massage focused on releasing the back, shoulders and legs, followed by a 40-minute facial with concentrated aloe vera that calms, decongests and regenerates skin affected by sun and salt. Perfect for: after surfing, after a hike, after trekking, after intense physical activity."
+  },
+  {
+    title: "LUMINOUS SKIN PACKAGE",
+    text: "Full-body exfoliation and hydration + massage: renewing treatment designed to restore softness and glow to the skin while relieving muscle tension."
   }
 ];
 
@@ -156,6 +183,18 @@ export default function ServicesDescriptionModal({ onClose }) {
               }
             >
               {BODY_TREATMENTS.map((it) => (
+                <Item key={it.title} {...it} />
+              ))}
+            </AccordionItem>
+
+            <AccordionItem
+              title="Rituals & Packages"
+              open={openGroup === "rituals"}
+              onToggle={() =>
+                setOpenGroup(openGroup === "rituals" ? null : "rituals")
+              }
+            >
+              {RITUALS.map((it) => (
                 <Item key={it.title} {...it} />
               ))}
             </AccordionItem>

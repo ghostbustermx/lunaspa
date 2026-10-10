@@ -61,7 +61,7 @@ export default function InHome() {
             </div>
             <div className="hero-card">
               <HeroPhoto
-                src={`${import.meta.env.BASE_URL}assets/luna_spa_3.webp`}
+                src={`${import.meta.env.BASE_URL}assets/luna_spa_6.webp`}
                 alt="Luna Spa in-home massage beside a private pool surrounded by tropical greenery"
               />
               <QuickBook href={LINKS.bookMoonlight} />

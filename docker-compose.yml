@@ -131,7 +131,15 @@ services:
       email.SMTPPort: ${SMTP_PORT:-587}
       email.SMTPCrypto: ${SMTP_CRYPTO:-tls}
       email.SMTPAuthMethod: ${SMTP_AUTH_METHOD:-login}
-      email.SMTPTimeOut: ${SMTP_TIMEOUT:-10}
+      email.SMTPTimeout: ${SMTP_TIMEOUT:-10}
+
+      # Destinatarios del formulario (Config\Email -> BaseConfig). Cambiarlos
+      # no exige tocar codigo: por defecto son los de Config\Email y desde el
+      # .env del VPS se sobreescriben.
+      email.fromName: ${EMAIL_FROM_NAME:-Luna Spa}
+      email.fromEmail: ${EMAIL_FROM:-info@sayulitatravel.com}
+      email.recipients: ${EMAIL_TO:-info@sayulitatravel.com}
+      email.bcc: ${EMAIL_BCC:-webmaster@venadoblanco.com}
     volumes:
       # Los unicos dos motivos por los que hacen falta volumenes: las fotos del
       # blog y las sesiones del panel. Sin ellos, un "down" seguido de un "up"
