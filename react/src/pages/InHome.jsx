@@ -16,31 +16,12 @@ import { IMG } from "../lib/images";
 export default function InHome() {
   const seo = SEO.inhome;
 
-  const stickerSrc = `${import.meta.env.BASE_URL}assets/sticker_azul.webp`;
-
   return (
     <>
       <Seo title={seo.title} description={seo.description} jsonLd={seo.jsonLd} />
 
       <section className="hero">
         <div className="container">
-          <a
-            className="hero-sticker-link"
-            href="https://sayulitatravel.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Visit Sayulita Travel"
-          >
-            <img
-              className="hero-sticker"
-              src={stickerSrc}
-              alt=""
-              aria-hidden="true"
-              width="76"
-              height="39"
-              loading="lazy"
-            />
-          </a>
           <Breadcrumb page="Moonlight Couples Ritual" />
           <div className="hero-grid">
             <div>

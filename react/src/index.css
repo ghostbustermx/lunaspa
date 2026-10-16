@@ -2281,54 +2281,8 @@ body.page-ready .hero .hero-grid > :nth-child(2){transition-delay:.12s}
 @media (max-width:700px){
   .faq-plant{top:-8px;bottom:auto;height:120px;max-width:none;aspect-ratio:auto;opacity:.28}
 }
-/* =========================================================
-   LUNA SPA — HERO STICKER (top-right, link to Sayulita Travel)
-   Absolute so it never adds height to the hero (the cover
-   background otherwise grows and looks zoomed in).
-   ========================================================= */
-.hero-sticker-link{
-  position:absolute;
-  top:60px;
-  right:26px;
-  z-index:30;
-  line-height:0;
-}
-.hero-sticker-link img{
-  transition:transform .25s ease,filter .25s ease;
-}
-.hero-sticker-link:hover img{
-  transform:scale(1.06);
-  filter:brightness(1.04);
-}
-.hero-sticker{
-  display:block;
-  width:290px;
-  height:auto;
-  pointer-events:none;
-}
-@media (max-width:900px){
-  .hero-sticker{width:235px}
-}
-@media (max-width:700px){
-  .hero-sticker-link{top:52px;right:18px}
-  .hero-sticker{width:200px}
-}
 @media (max-width:560px){
-  .hero-sticker-link{top:58px;right:10px}
-  .hero-sticker{width:172px}
   .page-home .hero .container{padding-top:80px}
-}
-@media (max-width:700px){
-  .page-inhome .hero-sticker-link,
-  .page-deep .hero-sticker-link,
-  .page-couples .hero-sticker-link,
-  .page-group .hero-sticker-link{top:8px}
-}
-@media (max-width:560px){
-  .page-inhome .hero-sticker-link,
-  .page-deep .hero-sticker-link,
-  .page-couples .hero-sticker-link,
-  .page-group .hero-sticker-link{top:14px}
 }
 
 /* =========================================================

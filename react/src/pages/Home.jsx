@@ -39,8 +39,6 @@ const GUIDE_CARDS = [
 export default function Home() {
   const seo = SEO.home;
 
-  const stickerSrc = `${import.meta.env.BASE_URL}assets/sticker_azul.webp`;
-
   return (
     <>
       <Seo title={seo.title} description={seo.description} jsonLd={seo.jsonLd} />
@@ -48,23 +46,6 @@ export default function Home() {
       <section className="hero">
         <HeroCarousel />
         <div className="container">
-          <a
-            className="hero-sticker-link"
-            href="https://sayulitatravel.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Visit Sayulita Travel"
-          >
-            <img
-              className="hero-sticker"
-              src={stickerSrc}
-              alt=""
-              aria-hidden="true"
-              width="76"
-              height="39"
-              loading="lazy"
-            />
-          </a>
           <Breadcrumb page="Massage in Sayulita" />
           <div className="hero-grid">
             <div>

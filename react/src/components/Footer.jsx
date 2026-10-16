@@ -85,16 +85,6 @@ export default function Footer() {
           In-home massage · Professional treatments · Private experience
         </span>
         <span>
-          Powered by{" "}
-          <a
-            href="https://sayulitatravel.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Sayulita Travel.
-          </a>
-        </span>
-        <span>
           <button
             type="button"
             className="footer-link-btn"
