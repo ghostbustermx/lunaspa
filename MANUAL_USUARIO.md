@@ -1089,7 +1089,7 @@ El proceso es interactivo y te pedirá:
 También se puede ejecutar sin preguntas:
 
 ```bash
-docker compose exec web php spark users:create \
+docker compose exec lunaspa-web php spark users:create \
   --username=nuevoadmin \
   --email=admin@ejemplo.com \
   --name="Nombre Apellido" \

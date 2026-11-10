@@ -1,5 +1,5 @@
 #!/bin/sh
-# Entrypoint del contenedor "web".
+# Entrypoint del contenedor "lunaspa-web".
 #
 # El contenedor arranca como root para poder corregir permisos, sembrar el
 # volumen de uploads y ejecutar las migraciones. Lo que de verdad sirve
@@ -124,7 +124,7 @@ log "MySQL responde"
 # rechaza el login si no hay una fila en la tabla users. El primer admin se
 # crea a mano:
 #
-#   docker compose exec web php spark users:create
+#   docker compose exec lunaspa-web php spark users:create
 # --------------------------------------------------------------------------
 log "ejecutando migraciones"
 cd "$APP_ROOT"

@@ -16,7 +16,7 @@ use CodeIgniter\CLI\CLI;
  *
  *   php spark users:create
  *   php spark users:create --role=editor
- *   docker compose exec web php spark users:create --username=admin --email=... --name=... --password=... --password-confirm=...
+ *   docker compose exec lunaspa-web php spark users:create --username=admin --email=... --name=... --password=... --password-confirm=...
  *
  * Todos los valores se pueden pasar por opcion para correrlo sin terminal
  * interactiva; si faltan, se preguntan.

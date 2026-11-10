@@ -117,7 +117,7 @@ author_id=$(printf '%s' "$author_id" | tr -d '\r' | head -n 1)
 if [ -z "$author_id" ]; then
     err "no existe el usuario '$AUTHOR_USER' en produccion."
     err "crealo antes con:"
-    err "  docker compose exec web php /var/www/backend/spark users:create \\"
+    err "  docker compose exec lunaspa-web php /var/www/backend/spark users:create \\"
     err "    --username=$AUTHOR_USER --email=correo@dominio.com \\"
     err "    --name=\"$AUTHOR_USER\" --role=editor"
     err "o indica otro con: AUTHOR_USER=otro $0 $DUMP_FILE"
@@ -133,7 +133,7 @@ for table in blog_posts blog_blocks blog_internal_links review_comments users; d
     exists=$(db "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = '$DB_NAME' AND table_name = '$table';" 2>/dev/null || printf '0')
     if [ "$exists" != "1" ]; then
         err "falta la tabla $table en $DB_NAME"
-        err "comprueba que las migraciones se ejecutaron: docker compose logs web"
+        err "comprueba que las migraciones se ejecutaron: docker compose logs lunaspa-web"
         exit 1
     fi
 done

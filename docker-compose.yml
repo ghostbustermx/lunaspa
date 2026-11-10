@@ -6,12 +6,19 @@
 #   lunaspa      red interna del proyecto, sin salida a la maquina host
 #
 # El contenedor web se une a las dos: Nginx Proxy Manager lo alcanza por su
-# nombre (web) y MySQL sigue sin ser alcanzable desde internet.
+# nombre de contenedor (lunaspa-web) y MySQL sigue sin ser alcanzable desde
+# internet.
+#
+# El servicio NO se llama "web" a proposito. Docker registra el nombre del
+# servicio como alias DNS en cada red, y npm-network es compartida con otros
+# proyectos del VPS (p. ej. g5, que tambien tiene un servicio "web"). Con dos
+# servicios "web" en la misma red, el nombre resuelve a cualquiera de los dos y
+# NPM termina sirviendo el dominio equivocado. "lunaspa-web" es unico.
 #
 # Uso, con el .env ya creado a partir de .env.example:
 #
 #   docker compose up -d --build
-#   docker compose exec web php spark users:create     # primer admin
+#   docker compose exec lunaspa-web php spark users:create   # primer admin
 #
 # No lleva clave "version:": Docker la marca como obsoleta y avisa en cada
 # arranque.
@@ -51,7 +58,10 @@ services:
       # interna; contra el nombre del host no hace falta resolver DNS.
       - --skip-name-resolve
 
-  web:
+  lunaspa-web:
+    # Nombre de contenedor fijo: es el que se usa como Forward Hostname en NPM.
+    # Sin el, Compose lo nombraria "lunaspa-lunaspa-web-1".
+    container_name: lunaspa-web
     build:
       context: .
       dockerfile: Dockerfile
@@ -164,7 +174,8 @@ networks:
   #
   # No la crea el proyecto a proposito: si ya existe creada por NPM con otro
   # nombre, marcarla external evita que Compose cree una segunda red homonima
-  # que NPM no conoce, y el contenedor web no seria alcanzable desde el proxy.
+  # que NPM no conoce, y el contenedor lunaspa-web no seria alcanzable desde el
+# proxy.
   npm-network:
     external: true
   # Red propia y aislada: MySQL solo es visible desde aqui.
